@@ -1,0 +1,65 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import PostCard from "../../components/PostCard.astro";
+import { SERIES } from "../../consts";
+import { withReadingTime } from "../../lib/with-reading-time";
+
+export async function getStaticPaths() {
+  return SERIES.map((s) => ({ params: { series: s.slug }, props: { series: s } }));
+}
+
+const { series } = Astro.props;
+const posts = await getCollection("posts", ({ data }) =>
+  (import.meta.env.PROD ? !data.draft : true) && data.series === series.slug
+);
+const sorted = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const withTimes = await withReadingTime(sorted);
+---
+
+<Base title={series.name} description={series.blurb}>
+  <div class="series-page">
+    <header>
+      <p class="tag">Series</p>
+      <h1>{series.name}</h1>
+      <p class="blurb">{series.blurb}</p>
+    </header>
+    {withTimes.length === 0 ? (
+      <p class="empty">No essays published in this series yet.</p>
+    ) : (
+      <div class="list">
+        {withTimes.map(({ post, readingTime }) => (
+          <PostCard
+            href={`/blog/${post.id}`}
+            title={post.data.title}
+            description={post.data.description}
+            series={post.data.series}
+            pubDate={post.data.pubDate}
+            readingTime={readingTime}
+          />
+        ))}
+      </div>
+    )}
+  </div>
+</Base>
+
+<style>
+  .series-page {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: var(--space-lg) var(--space-md);
+  }
+  header {
+    margin-block-end: var(--space-md);
+  }
+  header h1 {
+    margin: 0.3rem 0 0.6rem;
+  }
+  .blurb {
+    color: var(--text);
+    max-width: 60ch;
+  }
+  .empty {
+    color: var(--text-muted);
+  }
+</style>

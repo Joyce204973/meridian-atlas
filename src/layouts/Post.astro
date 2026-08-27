@@ -1,0 +1,93 @@
+---
+import { Image } from "astro:assets";
+import Base from "./Base.astro";
+import Prose from "../components/Prose.astro";
+import SeriesTag from "../components/SeriesTag.astro";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  post: CollectionEntry<"posts">;
+  readingTime?: string;
+}
+const { post, readingTime } = Astro.props;
+const { title, series, description, pubDate, pullQuote, heroImage, heroAlt, heroCredit } = post.data;
+
+const formattedDate = pubDate.toLocaleDateString("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+  timeZone: "UTC",
+});
+---
+
+<Base title={title} description={description} articlePublishedTime={pubDate.toISOString()}>
+  <article class="post">
+    <header class="post-header">
+      <SeriesTag series={series} />
+      <h1>{title}</h1>
+      <p class="meta">{formattedDate}{readingTime && <> &middot; {readingTime}</>}</p>
+    </header>
+
+    {heroImage && (
+      <figure class="hero">
+        <Image src={heroImage} alt={heroAlt ?? ""} widths={[640, 1200, 1600]} sizes="100vw" />
+        {heroCredit && <figcaption>{heroCredit}</figcaption>}
+      </figure>
+    )}
+
+    <Prose>
+      <slot />
+    </Prose>
+
+    <div class="cta">
+      <p>If this changed how you see it, subscribe to The Meridian Atlas.</p>
+      <a class="button" href="/#subscribe">Subscribe</a>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .post {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: var(--space-lg) var(--space-md);
+  }
+  .post-header {
+    max-width: var(--measure);
+    margin-inline: auto;
+    text-align: left;
+    margin-block-end: var(--space-lg);
+  }
+  .post-header h1 {
+    margin: 0.5rem 0;
+  }
+  .hero {
+    margin: 0 auto var(--space-lg);
+    max-width: 56rem;
+  }
+  .hero img {
+    display: block;
+    width: 100%;
+    border-radius: var(--radius);
+  }
+  .hero figcaption {
+    color: var(--text-muted);
+    font-size: var(--fs-small);
+    margin-block-start: 0.5rem;
+  }
+  .prose {
+    margin-inline: auto;
+  }
+  .cta {
+    max-width: var(--measure);
+    margin: var(--space-xl) auto 0;
+    padding-block-start: var(--space-md);
+    border-block-start: 1px solid var(--rule);
+  }
+  .cta p {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--text-strong);
+    margin-block-end: var(--space-sm);
+  }
+</style>

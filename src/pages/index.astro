@@ -1,17 +1,202 @@
 ---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import PostCard from "../components/PostCard.astro";
+import { SITE_TAGLINE, SERIES } from "../consts";
+import { withReadingTime } from "../lib/with-reading-time";
 
+const allPosts = await getCollection("posts", ({ data }) =>
+  import.meta.env.PROD ? !data.draft : true
+);
+const recentPosts = allPosts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 4);
+const recentWithTimes = await withReadingTime(recentPosts);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Base>
+  <section class="hero">
+    <img src="/images/globe-mark.png" alt="The Meridian Atlas mark: a globe traced with meridian lines" width="120" height="120" class="hero-mark" />
+    <h1>{SITE_TAGLINE}</h1>
+    <p class="lede">
+      Essays that hold Western medicine and Traditional Chinese Medicine side by side —
+      written by a biology student who has studied both, across six cities and four continents.
+    </p>
+    <div class="hero-actions">
+      <a class="button" href="/blog">Start reading</a>
+      <a class="button-outline" href="/about">About Joyce</a>
+    </div>
+  </section>
+
+  {recentWithTimes.length > 0 && (
+    <section class="recent">
+      <h2>Recent essays</h2>
+      <div class="recent-grid">
+        {recentWithTimes.map(({ post, readingTime }) => (
+          <PostCard
+            href={`/blog/${post.id}`}
+            title={post.data.title}
+            description={post.data.description}
+            series={post.data.series}
+            pubDate={post.data.pubDate}
+            readingTime={readingTime}
+          />
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class="series-grid-section">
+    <h2>Explore by series</h2>
+    <div class="series-grid">
+      {SERIES.map((s) => (
+        <a class="series-card" href={`/series/${s.slug}`}>
+          <h3>{s.name}</h3>
+          <p>{s.blurb}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section id="subscribe" class="subscribe-section">
+    <h2>Join the list</h2>
+    <p>New essays, roughly every other week. No noise, no wellness fluff.</p>
+    <form class="subscribe-form" action="#" method="post">
+      <label class="visually-hidden" for="email">Email address</label>
+      <input id="email" name="email" type="email" placeholder="you@example.com" required />
+      <button class="button" type="submit">Subscribe</button>
+    </form>
+    <p class="form-note">Subscription form goes live once a mailing list provider is connected.</p>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    max-width: 44rem;
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-md) var(--space-lg);
+    text-align: center;
+  }
+  .hero-mark {
+    display: block;
+    margin: 0 auto var(--space-sm);
+  }
+  .hero h1 {
+    margin: 0 0 var(--space-sm);
+  }
+  .lede {
+    font-weight: 300;
+    font-size: var(--fs-lede);
+    color: var(--text);
+    max-width: 50ch;
+    margin: 0 auto var(--space-md);
+  }
+  .hero-actions {
+    display: flex;
+    gap: var(--space-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .button-outline {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--fs-label);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-label);
+    color: var(--herbal-green);
+    border: 1px solid var(--herbal-green);
+    padding: 0.85em 1.6em;
+    border-radius: var(--radius);
+    text-decoration: none;
+  }
+  .button-outline:hover {
+    background: var(--herbal-green);
+    color: var(--rice-paper);
+  }
+
+  .recent,
+  .series-grid-section,
+  .subscribe-section {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: var(--space-lg) var(--space-md);
+  }
+  .recent {
+    border-block-start: 1px solid var(--rule);
+  }
+  .recent-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 var(--space-lg);
+  }
+
+  .series-grid-section {
+    background: var(--bg-alt);
+  }
+  .series-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: var(--space-md);
+  }
+  .series-card {
+    display: block;
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: var(--space-md);
+    text-decoration: none;
+  }
+  .series-card:hover {
+    border-color: var(--jade);
+  }
+  .series-card h3 {
+    font-size: 1.4rem;
+    margin: 0 0 0.5rem;
+    color: var(--herbal-green);
+  }
+  .series-card p {
+    color: var(--text);
+    margin: 0;
+    font-size: var(--fs-small);
+  }
+
+  .subscribe-section {
+    text-align: center;
+  }
+  .subscribe-form {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    max-width: 30rem;
+    margin: var(--space-md) auto 0.5rem;
+    flex-wrap: wrap;
+  }
+  .subscribe-form input {
+    flex: 1;
+    min-width: 12rem;
+    padding: 0.85em 1em;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
+    background: var(--bg);
+    color: var(--text-strong);
+  }
+  .form-note {
+    color: var(--text-muted);
+    font-size: var(--fs-small);
+  }
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  @media (max-width: 720px) {
+    .recent-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

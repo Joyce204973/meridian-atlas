@@ -1,0 +1,26 @@
+---
+import { SERIES } from "../consts";
+
+interface Props {
+  series: string;
+  linked?: boolean;
+}
+const { series, linked = true } = Astro.props;
+const entry = SERIES.find((s) => s.slug === series);
+const name = entry?.name ?? series;
+---
+
+{linked ? (
+  <a href={`/series/${series}`} class="tag">{name}</a>
+) : (
+  <span class="tag">{name}</span>
+)}
+
+<style>
+  .tag {
+    text-decoration: none;
+  }
+  a.tag:hover {
+    color: var(--jade);
+  }
+</style>

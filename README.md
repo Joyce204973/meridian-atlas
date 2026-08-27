@@ -1,43 +1,23 @@
-# Astro Starter Kit: Minimal
+# The Meridian Atlas
 
-```sh
-npm create astro@latest -- --template minimal
-```
+The website for [The Meridian Atlas](https://meridian-atlas.vercel.app) — essays that hold Western
+medicine and Traditional Chinese Medicine side by side, written by Joyce Ma.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Built with [Astro](https://astro.build), deployed on [Vercel](https://vercel.com).
 
-## 🚀 Project Structure
+## Commands
 
-Inside of your Astro project, you'll see the following folders and files:
+All commands run from the project root:
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+| Command           | What it does                              |
+| :----------------- | :----------------------------------------- |
+| `npm run dev`       | Look at the site on your laptop            |
+| `git add .`         | Gather up what you changed                 |
+| `git commit -m ""`  | Save it with a note                        |
+| `git push`          | Send it live (Vercel rebuilds automatically) |
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Writing a new post
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Add a `.mdx` file to `src/content/posts/`. See an existing post for the frontmatter shape
+(`title`, `series`, `description`, `pubDate`, `pullQuote`, `draft`). New posts default to
+`draft: true` — flip it to `false` when the essay is ready to publish.

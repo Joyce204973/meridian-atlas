@@ -1,0 +1,112 @@
+---
+import { SITE_TITLE, NAV_LINKS } from "../consts";
+---
+
+<header class="nav-wrap">
+  <nav class="nav">
+    <a href="/" class="lockup">
+      <img src="/images/globe-mark.png" alt="" width="36" height="36" class="mark" />
+      <span class="wordmark">{SITE_TITLE}</span>
+    </a>
+    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="links">
+      {NAV_LINKS.map((link) => (
+        <li><a href={link.href}>{link.label}</a></li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .nav-wrap {
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+  .nav {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: var(--space-sm) var(--space-md);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .lockup {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+  }
+  .mark {
+    display: block;
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+  .wordmark {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.15rem;
+    letter-spacing: 0.03em;
+    color: var(--herbal-green);
+  }
+  .links {
+    list-style: none;
+    display: flex;
+    gap: var(--space-md);
+    margin: 0;
+    padding: 0;
+  }
+  .links a {
+    color: var(--text-strong);
+  }
+  .links a:hover {
+    color: var(--accent-hover);
+  }
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+  .menu-toggle span {
+    width: 22px;
+    height: 2px;
+    background: var(--herbal-green);
+  }
+  @media (max-width: 640px) {
+    .menu-toggle {
+      display: flex;
+    }
+    .links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+      padding: var(--space-sm) var(--space-md);
+      gap: var(--space-sm);
+    }
+    .links.open {
+      display: flex;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>(".menu-toggle");
+  const links = document.querySelector<HTMLUListElement>(".links");
+  toggle?.addEventListener("click", () => {
+    const isOpen = links?.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", String(Boolean(isOpen)));
+  });
+</script>

@@ -1,0 +1,112 @@
+---
+import Base from "../layouts/Base.astro";
+
+const terms = [
+  {
+    id: "qi",
+    term: "Qi (氣)",
+    definition:
+      "Often translated as 'vital energy' or 'life force,' Qi is the concept of a dynamic, moving force that animates the body and connects it to its environment. In TCM, Qi flows through pathways called meridians, and its balance — not its presence or absence — is what practitioners track.",
+  },
+  {
+    id: "yin-yang",
+    term: "Yin and Yang",
+    definition:
+      "A framework for describing paired, interdependent forces — cold and warm, rest and activity, inward and outward. Neither is 'good' or 'bad'; health is framed as a dynamic balance between the two, shifting with the time of day, the season, and the person.",
+  },
+  {
+    id: "five-elements",
+    term: "The Five Elements (Wu Xing)",
+    definition:
+      "Wood, Fire, Earth, Metal, and Water — a system used to describe relationships and cycles between the body's organs, emotions, seasons, and tastes. Each element generates the next and restrains another, a way of mapping how one system in the body affects another.",
+  },
+  {
+    id: "zang-fu",
+    term: "Zang Fu (臟腑)",
+    definition:
+      "The TCM organ system. Zang Fu organs share names with Western anatomical organs (Liver, Spleen, Kidney) but describe broader functional systems rather than the physical organ alone — the 'Spleen' in TCM, for instance, covers digestion and the transformation of food into usable energy, not just the physical spleen.",
+  },
+  {
+    id: "spleen-yang",
+    term: "Spleen Yang (Deficiency)",
+    definition:
+      "In TCM, the Spleen is responsible for transforming food into Qi and blood — its Yang aspect is the 'warmth' that powers that transformation. When Spleen Yang is described as deficient, a practitioner is pointing to signs like fatigue after eating, a preference for warm food and drink, or loose stools — not a diagnosis of the physical organ.",
+  },
+  {
+    id: "damp",
+    term: "Damp",
+    definition:
+      "A pattern used to describe heaviness, sluggishness, or fluid retention in the body — physically and metaphorically 'damp,' the way a humid climate feels. Diet, digestion, and climate are all seen as contributing factors.",
+  },
+  {
+    id: "meridians",
+    term: "Meridians (Jing Luo, 經絡)",
+    definition:
+      "The pathways through which Qi is said to flow, connecting the body's surface to its internal organs. Acupuncture points sit along these pathways. The Meridian Atlas takes its name from this idea — a map of connections rather than isolated parts.",
+  },
+];
+---
+
+<Base
+  title="Glossary"
+  description="Short, plain-language definitions of the TCM terms used throughout The Meridian Atlas — Qi, Yin and Yang, the Five Elements, Zang Fu, and more."
+>
+  <div class="glossary">
+    <header>
+      <p class="tag">Reference</p>
+      <h1>Glossary & Concepts</h1>
+      <p class="intro">
+        Short definitions for the terms used throughout the Atlas. Every essay links here the
+        first time it uses one of these words.
+      </p>
+    </header>
+
+    <dl>
+      {terms.map((t) => (
+        <div class="entry" id={t.id}>
+          <dt>{t.term}</dt>
+          <dd>{t.definition}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</Base>
+
+<style>
+  .glossary {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: var(--space-lg) var(--space-md);
+  }
+  header {
+    margin-block-end: var(--space-lg);
+  }
+  header h1 {
+    margin: 0.3rem 0 0.6rem;
+  }
+  .intro {
+    color: var(--text);
+    max-width: 60ch;
+  }
+  dl {
+    margin: 0;
+  }
+  .entry {
+    padding-block: var(--space-md);
+    border-block-end: 1px solid var(--rule);
+    scroll-margin-top: 5rem;
+  }
+  dt {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--herbal-green);
+    margin-block-end: 0.4rem;
+  }
+  dd {
+    margin: 0;
+    color: var(--text);
+  }
+  .entry:target {
+    background: var(--bg-alt);
+  }
+</style>

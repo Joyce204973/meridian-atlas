@@ -1,0 +1,50 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import PostCard from "../../components/PostCard.astro";
+import { withReadingTime } from "../../lib/with-reading-time";
+
+const posts = await getCollection("posts", ({ data }) =>
+  import.meta.env.PROD ? !data.draft : true
+);
+const sorted = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const withTimes = await withReadingTime(sorted);
+---
+
+<Base title="Blog" description="Every essay published on The Meridian Atlas, newest first.">
+  <div class="blog-index">
+    <header>
+      <h1>All Essays</h1>
+    </header>
+    {withTimes.length === 0 ? (
+      <p class="empty">The first essays are on their way. Check back soon.</p>
+    ) : (
+      <div class="list">
+        {withTimes.map(({ post, readingTime }) => (
+          <PostCard
+            href={`/blog/${post.id}`}
+            title={post.data.title}
+            description={post.data.description}
+            series={post.data.series}
+            pubDate={post.data.pubDate}
+            readingTime={readingTime}
+          />
+        ))}
+      </div>
+    )}
+  </div>
+</Base>
+
+<style>
+  .blog-index {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: var(--space-lg) var(--space-md);
+  }
+  header {
+    margin-block-end: var(--space-md);
+  }
+  .empty {
+    color: var(--text-muted);
+  }
+</style>

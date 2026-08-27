@@ -1,0 +1,148 @@
+---
+import { SITE_TITLE, SITE_TAGLINE, SERIES } from "../consts";
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="inner">
+    <div class="brand">
+      <img src="/images/globe-mark.png" alt="" width="44" height="44" class="mark" />
+      <p class="wordmark">{SITE_TITLE}</p>
+      <p class="tagline">{SITE_TAGLINE}</p>
+    </div>
+
+    <nav class="series-nav" aria-label="Series">
+      <p class="label">Series</p>
+      <ul>
+        {SERIES.map((s) => (
+          <li><a href={`/series/${s.slug}`}>{s.name}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="subscribe">
+      <p class="label">Subscribe</p>
+      <p>New essays, roughly every other week. No noise.</p>
+      <a class="button" href="/#subscribe">Join the list</a>
+    </div>
+  </div>
+
+  <div class="legal">
+    <div class="seal">
+      <img src="/images/seal-mark.png" alt="" width="28" height="28" />
+      <span>Huang Ma Medicine — a future practice by Joyce Ma</span>
+    </div>
+    <p class="disclaimer">
+      The Meridian Atlas is an educational project, not medical advice. Joyce Ma is a
+      student, not a licensed practitioner. Always talk to a qualified provider before
+      starting, stopping, or changing any treatment.
+    </p>
+    <p class="copyright">&copy; {year} The Meridian Atlas.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--herbal-green);
+    color: var(--rice-paper);
+    margin-block-start: var(--space-xl);
+  }
+  .inner {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: var(--space-lg) var(--space-md) var(--space-md);
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: var(--space-lg);
+  }
+  .brand .mark {
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-block-end: var(--space-xs);
+  }
+  .brand .wordmark {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--rice-paper);
+    margin: 0;
+  }
+  .brand .tagline {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--earth-gold);
+    margin: 0.25rem 0 0;
+  }
+  .label {
+    font-family: var(--font-body);
+    font-size: var(--fs-label);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: var(--ls-label);
+    color: var(--soft-jade);
+    margin: 0 0 var(--space-sm);
+  }
+  .series-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+  .series-nav a {
+    color: var(--rice-paper);
+    opacity: 0.9;
+  }
+  .series-nav a:hover {
+    color: var(--earth-gold);
+    opacity: 1;
+  }
+  .subscribe p {
+    color: var(--rice-paper);
+    opacity: 0.85;
+    margin: 0 0 var(--space-sm);
+  }
+  .subscribe .button {
+    background: var(--earth-gold);
+    color: var(--charcoal);
+  }
+  .subscribe .button:hover {
+    background: var(--rice-paper);
+  }
+  .legal {
+    border-top: 1px solid rgba(250, 250, 246, 0.2);
+    padding: var(--space-md);
+  }
+  .legal > * {
+    max-width: 72rem;
+    margin-inline: auto;
+  }
+  .seal {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: var(--fs-small);
+    color: var(--soft-jade);
+    margin-block-end: var(--space-sm);
+  }
+  .seal img {
+    border-radius: 50%;
+  }
+  .disclaimer {
+    font-size: var(--fs-small);
+    color: var(--soft-jade);
+    max-width: 60ch;
+    margin-block-end: var(--space-sm);
+  }
+  .copyright {
+    font-size: var(--fs-small);
+    color: var(--soft-jade);
+    margin: 0;
+  }
+  @media (max-width: 720px) {
+    .inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+  }
+</style>

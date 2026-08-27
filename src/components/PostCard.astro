@@ -1,0 +1,52 @@
+---
+import SeriesTag from "./SeriesTag.astro";
+
+interface Props {
+  href: string;
+  title: string;
+  description: string;
+  series: string;
+  pubDate: Date;
+  readingTime?: string;
+}
+const { href, title, description, series, pubDate, readingTime } = Astro.props;
+const formattedDate = pubDate.toLocaleDateString("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+  timeZone: "UTC",
+});
+---
+
+<article class="card">
+  <SeriesTag series={series} />
+  <h3><a href={href}>{title}</a></h3>
+  <p class="description">{description}</p>
+  <p class="meta">
+    {formattedDate}
+    {readingTime && <> &middot; {readingTime}</>}
+  </p>
+</article>
+
+<style>
+  .card {
+    padding-block: var(--space-md);
+    border-block-end: 1px solid var(--rule);
+  }
+  .card h3 {
+    font-size: var(--fs-post-title);
+    margin: 0.4rem 0 0.5rem;
+  }
+  .card h3 a {
+    color: var(--text-strong);
+    text-decoration: none;
+  }
+  .card h3 a:hover {
+    color: var(--accent-hover);
+  }
+  .description {
+    color: var(--text);
+    margin: 0 0 0.5rem;
+    max-width: 60ch;
+  }
+</style>
