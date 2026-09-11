@@ -1,0 +1,381 @@
+---
+import Base from "../layouts/Base.astro";
+import { QUIZ_STATEMENTS } from "../data/quiz-statements";
+import { PHASES, PHASE_ORDER } from "../data/archetypes";
+
+const SCALE = [
+  { value: 3, label: "Strongly like me" },
+  { value: 1, label: "Somewhat like me" },
+  { value: 0, label: "Not sure" },
+  { value: -2, label: "Definitely not me" },
+];
+---
+
+<Base
+  title="Find Your TCM Archetype"
+  description="A self-assessment based on Five-Phase theory — answer 30 short statements to find which of the five TCM archetypes organizes how you move through the world."
+>
+  <div class="quiz-page">
+    <section class="intro" id="quiz-intro">
+      <p class="tag">Self-Assessment</p>
+      <h1>Find Your TCM Archetype</h1>
+      <p class="lede">
+        Five-Phase theory holds that one phase — Wood, Fire, Earth, Metal, or Water —
+        tends to organize how a person moves through the world. Answer the 30 statements
+        below honestly, as yourself right now rather than who you'd like to be, and see
+        which phase comes forward.
+      </p>
+      <p class="meta">30 statements &middot; about 5 minutes</p>
+      <p class="note">
+        This is a tool for self-reflection, not a diagnosis or medical assessment.
+      </p>
+    </section>
+
+    <form id="quiz-form" novalidate>
+      <ol class="statements">
+        {QUIZ_STATEMENTS.map((s, i) => (
+          <li class="statement">
+            <fieldset>
+              <legend>
+                <span class="q-number">{i + 1}</span>
+                {s.text}
+              </legend>
+              <div class="scale">
+                {SCALE.map((opt) => (
+                  <label class="scale-option">
+                    <input type="radio" name={s.id} value={opt.value} required />
+                    <span>{opt.label}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+          </li>
+        ))}
+      </ol>
+
+      <div class="submit-row">
+        <p class="progress" id="quiz-progress">0 of {QUIZ_STATEMENTS.length} answered</p>
+        <button class="button" type="submit">See My Archetype</button>
+      </div>
+    </form>
+
+    <section class="results" id="quiz-results" hidden>
+      <p class="tag">Your Result</p>
+      <h1 id="result-heading">You are —</h1>
+      <p class="result-teaser" id="result-teaser"></p>
+
+      <div class="breakdown" id="result-breakdown">
+        {PHASE_ORDER.map((id) => (
+          <div class="breakdown-row" data-phase={id}>
+            <span class="breakdown-label">{PHASES[id].phaseName}</span>
+            <div class="breakdown-bar">
+              <div class="breakdown-fill" data-fill={id}></div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <p class="result-secondary" id="result-secondary" hidden></p>
+
+      <div class="result-actions">
+        <a class="button" href="/archetypes">Explore the Five Archetypes</a>
+        <button class="button-outline" type="button" id="retake-button">Retake the quiz</button>
+      </div>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .quiz-page {
+    max-width: 44rem;
+    margin: 0 auto;
+    padding: var(--space-lg) var(--space-md) var(--space-xl);
+  }
+
+  .intro {
+    margin-block-end: var(--space-lg);
+  }
+  .intro h1 {
+    margin: 0.4rem 0 var(--space-sm);
+  }
+  .lede {
+    font-weight: 300;
+    font-size: var(--fs-lede);
+    color: var(--text);
+    max-width: 58ch;
+  }
+  .intro .meta {
+    margin-block-start: var(--space-sm);
+  }
+  .intro .note {
+    color: var(--text-muted);
+    font-size: var(--fs-small);
+    font-style: italic;
+  }
+
+  .statements {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .statement {
+    padding-block: var(--space-md);
+    border-block-end: 1px solid var(--rule);
+  }
+  .statement fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+  .statement legend {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--text-strong);
+    line-height: 1.4;
+    padding: 0;
+    margin-block-end: var(--space-sm);
+  }
+  .q-number {
+    display: inline-block;
+    min-width: 1.6em;
+    color: var(--earth-gold);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--fs-small);
+    vertical-align: middle;
+  }
+
+  .scale {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .scale-option {
+    position: relative;
+  }
+  .scale-option input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    cursor: pointer;
+  }
+  .scale-option span {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: var(--fs-small);
+    color: var(--text);
+    background: var(--bg-alt);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 0.5em 0.9em;
+    cursor: pointer;
+  }
+  .scale-option input:checked + span {
+    background: var(--herbal-green);
+    border-color: var(--herbal-green);
+    color: var(--rice-paper);
+  }
+  .scale-option input:focus-visible + span {
+    outline: 2px solid var(--herbal-green);
+    outline-offset: 2px;
+  }
+
+  .submit-row {
+    position: sticky;
+    bottom: 0;
+    background: var(--bg);
+    border-block-start: 1px solid var(--rule);
+    padding-block: var(--space-md);
+    margin-block-start: var(--space-md);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+  }
+  .progress {
+    color: var(--text-muted);
+    font-size: var(--fs-small);
+    margin: 0;
+  }
+
+  /* Results */
+  .results h1 {
+    margin: 0.4rem 0 var(--space-sm);
+  }
+  .result-teaser {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--jade);
+    margin-block-end: var(--space-lg);
+  }
+
+  .breakdown {
+    display: grid;
+    gap: var(--space-sm);
+    margin-block-end: var(--space-md);
+  }
+  .breakdown-row {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+  .breakdown-label {
+    font-family: var(--font-body);
+    font-size: var(--fs-label);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: var(--ls-label);
+    color: var(--text);
+  }
+  .breakdown-bar {
+    height: 0.6rem;
+    background: var(--bg-alt);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .breakdown-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--soft-jade);
+    transition: width 500ms ease;
+  }
+  .breakdown-row.primary .breakdown-fill {
+    background: var(--herbal-green);
+  }
+  .breakdown-row.primary .breakdown-label {
+    color: var(--herbal-green);
+    font-weight: 700;
+  }
+
+  .result-secondary {
+    color: var(--text-muted);
+    font-size: var(--fs-small);
+    max-width: 55ch;
+    margin-block-end: var(--space-lg);
+  }
+
+  .result-actions {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+  }
+  .button-outline {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--fs-label);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-label);
+    color: var(--herbal-green);
+    background: none;
+    border: 1px solid var(--herbal-green);
+    padding: 0.85em 1.6em;
+    border-radius: var(--radius);
+    cursor: pointer;
+  }
+  .button-outline:hover {
+    background: var(--herbal-green);
+    color: var(--rice-paper);
+  }
+</style>
+
+<script>
+  const PHASES: Record<string, { phaseName: string; archetype: string; teaser: string }> = {
+    wood: { phaseName: "Wood", archetype: "The Pioneer", teaser: "You move first and adjust as you go." },
+    fire: { phaseName: "Fire", archetype: "The Wizard", teaser: "You bring warmth, momentum, and connection into a room." },
+    earth: { phaseName: "Earth", archetype: "The Peacemaker", teaser: "You hold people and plans together." },
+    metal: { phaseName: "Metal", archetype: "The Alchemist", teaser: "You refine things until they're right." },
+    water: { phaseName: "Water", archetype: "The Philosopher", teaser: "You go deep before you go wide." },
+  };
+
+  const STATEMENT_PHASE: Record<string, string> = {
+    w1: "wood", w2: "wood", w3: "wood", w4: "wood", w5: "wood", w6: "wood",
+    f1: "fire", f2: "fire", f3: "fire", f4: "fire", f5: "fire", f6: "fire",
+    e1: "earth", e2: "earth", e3: "earth", e4: "earth", e5: "earth", e6: "earth",
+    m1: "metal", m2: "metal", m3: "metal", m4: "metal", m5: "metal", m6: "metal",
+    wa1: "water", wa2: "water", wa3: "water", wa4: "water", wa5: "water", wa6: "water",
+  };
+
+  const TOTAL_STATEMENTS = Object.keys(STATEMENT_PHASE).length;
+  const ITEMS_PER_PHASE = 6;
+  const MIN_SCORE = ITEMS_PER_PHASE * -2;
+  const MAX_SCORE = ITEMS_PER_PHASE * 3;
+  const RANGE = MAX_SCORE - MIN_SCORE;
+
+  const form = document.querySelector<HTMLFormElement>("#quiz-form");
+  const introSection = document.querySelector<HTMLElement>("#quiz-intro");
+  const resultsSection = document.querySelector<HTMLElement>("#quiz-results");
+  const progressEl = document.querySelector<HTMLElement>("#quiz-progress");
+  const resultHeading = document.querySelector<HTMLElement>("#result-heading");
+  const resultTeaser = document.querySelector<HTMLElement>("#result-teaser");
+  const resultSecondary = document.querySelector<HTMLElement>("#result-secondary");
+  const retakeButton = document.querySelector<HTMLButtonElement>("#retake-button");
+
+  function updateProgress() {
+    if (!form || !progressEl) return;
+    const answered = new Set<string>();
+    for (const [name, value] of new FormData(form).entries()) {
+      if (typeof value === "string" && value !== "") answered.add(name);
+    }
+    progressEl.textContent = `${answered.size} of ${TOTAL_STATEMENTS} answered`;
+  }
+
+  form?.addEventListener("change", updateProgress);
+  updateProgress();
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+
+    const scores: Record<string, number> = { wood: 0, fire: 0, earth: 0, metal: 0, water: 0 };
+    for (const [name, value] of new FormData(form).entries()) {
+      const phase = STATEMENT_PHASE[name];
+      if (!phase) continue;
+      scores[phase] += Number(value);
+    }
+
+    const ranked = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+    const [primaryId, primaryScore] = ranked[0];
+    const [, secondScore] = ranked[1];
+    const primary = PHASES[primaryId];
+
+    if (resultHeading) resultHeading.textContent = `You are ${primary.phaseName} — ${primary.archetype}`;
+    if (resultTeaser) resultTeaser.textContent = primary.teaser;
+
+    document.querySelectorAll<HTMLElement>(".breakdown-row").forEach((row) => {
+      const id = row.dataset.phase!;
+      const fill = row.querySelector<HTMLElement>(".breakdown-fill");
+      const pct = Math.max(0, Math.min(100, ((scores[id] - MIN_SCORE) / RANGE) * 100));
+      if (fill) fill.style.width = `${pct}%`;
+      row.classList.toggle("primary", id === primaryId);
+    });
+
+    if (resultSecondary) {
+      if (primaryScore - secondScore <= 3) {
+        const secondaryId = ranked[1][0];
+        const secondary = PHASES[secondaryId];
+        resultSecondary.textContent = `Your scores were close — ${secondary.phaseName} (${secondary.archetype}) also came through strongly. It's common to carry two phases close together.`;
+        resultSecondary.hidden = false;
+      } else {
+        resultSecondary.hidden = true;
+      }
+    }
+
+    introSection?.setAttribute("hidden", "");
+    form.setAttribute("hidden", "");
+    resultsSection?.removeAttribute("hidden");
+    resultsSection?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  retakeButton?.addEventListener("click", () => {
+    form?.reset();
+    updateProgress();
+    resultsSection?.setAttribute("hidden", "");
+    introSection?.removeAttribute("hidden");
+    form?.removeAttribute("hidden");
+    introSection?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+</script>

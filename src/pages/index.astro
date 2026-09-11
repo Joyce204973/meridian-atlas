@@ -28,6 +28,17 @@ const recentWithTimes = await withReadingTime(recentPosts);
     </div>
   </section>
 
+  <section class="quiz-callout">
+    <p class="tag">Self-Assessment</p>
+    <h2>Find Your TCM Archetype</h2>
+    <p class="quiz-callout-text">
+      Five-Phase theory holds that one phase — Wood, Fire, Earth, Metal, or Water —
+      organizes how a person moves through the world. Answer 30 short statements to
+      find yours.
+    </p>
+    <a class="button" href="/archetype-quiz">Take the Quiz</a>
+  </section>
+
   {recentWithTimes.length > 0 && (
     <section class="recent">
       <h2>Recent essays</h2>
@@ -112,6 +123,22 @@ const recentWithTimes = await withReadingTime(recentPosts);
   .button-outline:hover {
     background: var(--herbal-green);
     color: var(--rice-paper);
+  }
+
+  .quiz-callout {
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: var(--space-lg) var(--space-md);
+    text-align: center;
+    border-block: 1px solid var(--rule);
+  }
+  .quiz-callout h2 {
+    margin: 0.4rem 0 var(--space-sm);
+  }
+  .quiz-callout-text {
+    color: var(--text);
+    max-width: 48ch;
+    margin: 0 auto var(--space-md);
   }
 
   .recent,
