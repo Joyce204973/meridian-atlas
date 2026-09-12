@@ -1,0 +1,132 @@
+---
+import { existsSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import Base from "../../layouts/Base.astro";
+import Prose from "../../components/Prose.astro";
+
+const portraitPath = fileURLToPath(new URL("../../../public/images/joyce-portrait.jpg", import.meta.url));
+const hasPortrait = existsSync(portraitPath);
+---
+
+<Base
+  title="Joyce's Story"
+  description="Joyce Ma grew up between Western medicine and Traditional Chinese Medicine, studied biology at Minerva University across six cities and four continents, and is learning to read both maps of the body at once."
+>
+  <article class="story">
+    <header class="story-header">
+      <p class="tag">My Story</p>
+      <h1>About Joyce</h1>
+    </header>
+
+    {hasPortrait && (
+      <img class="portrait" src="/images/joyce-portrait.jpg" alt="Joyce Ma" width="480" height="480" />
+    )}
+
+    <Prose>
+      <p>
+        I grew up perched on the intersection of two medical worlds, and that intersection is
+        where my experience learning about Traditional Chinese Medicine (TCM) is unique.
+      </p>
+      <p>
+        In the busy, tech-driven startup culture of San Francisco, there was a little home
+        filled with simmering teas, pots of herbal soup, and natural remedies passed through the
+        hands of generations of farmers from rural China. I grew up experiencing the strengths
+        of two medical worldviews: modern Western medicine and TCM.
+      </p>
+      <p>
+        I study biology at Minerva University, where I have learned the rigor of the scientific
+        method and the Western map of the body — cells, pathogens, mechanisms, and the empirical
+        method. As my degree took me to six cities across four continents, I explored each one
+        through the lens of Chinese medicine.
+      </p>
+      <p>
+        In San Francisco, I shadowed an acupuncturist and learned the patterns of dis-ease, the
+        art of needling, and how fire cupping serves as both diagnosis and treatment. In Taipei,
+        I observed the workflow from consultation to pharmacists filling herbal prescriptions and
+        experienced their robust Western hospitals alongside nurturing acupuncture clinics. In
+        Shanghai, I attended lectures by TCM professors. In Seoul, I toured the TCM museum,
+        browsed the herb market, and received acupuncture weekly. In Buenos Aires, I felt time
+        slow down as friends gathered in the plazas after work to share a hot mate. There, I
+        witnessed an appreciation for life and rest I had never known, where happiness radiated
+        everywhere. In Tokyo, I stepped into a train station and fell into the rapid pace of the
+        locals, feeling the unnecessary urge to rush. I shadowed at a Japanese acupuncture clinic
+        and collaborated with the practitioners to design a health journal for patients — a tool
+        to help them find awareness and be empowered to live healthily in a workaholic society.
+      </p>
+      <p>
+        I may not be a practitioner yet, but I have learned about health by engaging with
+        cultures and lifestyles from North America, Latin America, three Asian countries, to
+        Europe. I am learning to read two maps of the body at once, and I want to take you along
+        and show you what I am seeing.
+      </p>
+    </Prose>
+
+    <div class="future-practice">
+      <img src="/images/seal-mark.png" alt="" width="40" height="40" />
+      <p>
+        <strong>Huang Ma Medicine</strong> is a future acupuncture practice I plan to open once
+        I'm licensed. The Meridian Atlas comes first.
+      </p>
+    </div>
+
+    <a class="button-outline" href="/about">&larr; Back to About</a>
+  </article>
+</Base>
+
+<style>
+  .story {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: var(--space-lg) var(--space-md);
+  }
+  .story-header {
+    margin-block-end: var(--space-md);
+  }
+  .story-header h1 {
+    margin: 0.4rem 0 0;
+  }
+  .portrait {
+    width: 100%;
+    max-width: 22rem;
+    height: auto;
+    object-fit: cover;
+    border-radius: var(--radius);
+    margin-block-end: var(--space-lg);
+  }
+  .future-practice {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-block-start: var(--space-xl);
+    margin-block-end: var(--space-lg);
+    padding: var(--space-md);
+    background: var(--bg-alt);
+    border-radius: var(--radius);
+  }
+  .future-practice img {
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .future-practice p {
+    margin: 0;
+    color: var(--text);
+    font-size: var(--fs-small);
+  }
+  .button-outline {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--fs-label);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-label);
+    color: var(--herbal-green);
+    border: 1px solid var(--herbal-green);
+    padding: 0.85em 1.6em;
+    border-radius: var(--radius);
+    text-decoration: none;
+    display: inline-block;
+  }
+  .button-outline:hover {
+    background: var(--herbal-green);
+    color: var(--rice-paper);
+  }
+</style>

@@ -283,13 +283,7 @@ const SCALE = [
 </style>
 
 <script>
-  const PHASES: Record<string, { phaseName: string; archetype: string; teaser: string }> = {
-    wood: { phaseName: "Wood", archetype: "The Pioneer", teaser: "You move first and adjust as you go." },
-    fire: { phaseName: "Fire", archetype: "The Wizard", teaser: "You bring warmth, momentum, and connection into a room." },
-    earth: { phaseName: "Earth", archetype: "The Peacemaker", teaser: "You hold people and plans together." },
-    metal: { phaseName: "Metal", archetype: "The Alchemist", teaser: "You refine things until they're right." },
-    water: { phaseName: "Water", archetype: "The Philosopher", teaser: "You go deep before you go wide." },
-  };
+  import { PHASES, type PhaseId } from "../data/archetypes";
 
   const STATEMENT_PHASE: Record<string, string> = {
     w1: "wood", w2: "wood", w3: "wood", w4: "wood", w5: "wood", w6: "wood",
@@ -340,7 +334,7 @@ const SCALE = [
     const ranked = Object.entries(scores).sort((a, b) => b[1] - a[1]);
     const [primaryId, primaryScore] = ranked[0];
     const [, secondScore] = ranked[1];
-    const primary = PHASES[primaryId];
+    const primary = PHASES[primaryId as PhaseId];
 
     if (resultHeading) resultHeading.textContent = `You are ${primary.phaseName} — ${primary.archetype}`;
     if (resultTeaser) resultTeaser.textContent = primary.teaser;
@@ -356,7 +350,7 @@ const SCALE = [
     if (resultSecondary) {
       if (primaryScore - secondScore <= 3) {
         const secondaryId = ranked[1][0];
-        const secondary = PHASES[secondaryId];
+        const secondary = PHASES[secondaryId as PhaseId];
         resultSecondary.textContent = `Your scores were close — ${secondary.phaseName} (${secondary.archetype}) also came through strongly. It's common to carry two phases close together.`;
         resultSecondary.hidden = false;
       } else {

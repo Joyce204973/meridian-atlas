@@ -1,0 +1,136 @@
+---
+import Base from "../../layouts/Base.astro";
+import Prose from "../../components/Prose.astro";
+import { PHASES, PHASE_ORDER } from "../../data/archetypes";
+
+export async function getStaticPaths() {
+  return PHASE_ORDER.map((id) => ({ params: { slug: PHASES[id].slug }, props: { phase: PHASES[id] } }));
+}
+
+const { phase } = Astro.props;
+---
+
+<Base
+  title={`${phase.phaseName} — ${phase.archetype}`}
+  description={phase.teaser}
+>
+  <article class="archetype-detail">
+    <header class="detail-header">
+      <p class="tag">{phase.season} &middot; Five-Phase Theory</p>
+      <h1>{phase.phaseName} — {phase.archetype}</h1>
+      <p class="teaser">{phase.teaser}</p>
+    </header>
+
+    <Prose>
+      {phase.description.map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
+    </Prose>
+
+    <div class="tables">
+      <div class="trait-box">
+        <h3>Key Characteristics</h3>
+        <ul>
+          {phase.keyCharacteristics.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+      <div class="trait-box">
+        <h3>What Tends to Throw This Type Off</h3>
+        <ul>
+          {phase.typicalProblems.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+
+    <blockquote class="pullquote">{phase.powerLine}</blockquote>
+
+    <div class="detail-actions">
+      <a class="button-outline" href="/archetypes">&larr; All Five Archetypes</a>
+      <a class="button" href="/archetype-quiz">Retake the Quiz</a>
+    </div>
+
+    <p class="source-note">
+      Adapted from the Five-Phase framework in Beinfield, H., &amp; Korngold, E. (1991).
+      <em>Between Heaven and Earth: A Guide to Chinese Medicine.</em> Ballantine Books.
+    </p>
+  </article>
+</Base>
+
+<style>
+  .archetype-detail {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: var(--space-lg) var(--space-md) var(--space-xl);
+  }
+  .detail-header {
+    margin-block-end: var(--space-lg);
+  }
+  .detail-header h1 {
+    margin: 0.4rem 0 var(--space-sm);
+  }
+  .teaser {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--jade);
+  }
+
+  .tables {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+    margin-block: var(--space-xl);
+  }
+  .trait-box {
+    background: var(--bg-alt);
+    border-radius: var(--radius);
+    padding: var(--space-md);
+  }
+  .trait-box h3 {
+    font-size: var(--fs-h3);
+    color: var(--herbal-green);
+    margin: 0 0 var(--space-sm);
+  }
+  .trait-box ul {
+    margin: 0;
+    padding-inline-start: 1.2em;
+    color: var(--text);
+  }
+  .trait-box li {
+    margin-block-end: 0.4rem;
+  }
+
+  .detail-actions {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    margin-block-end: var(--space-lg);
+  }
+  .button-outline {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--fs-label);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-label);
+    color: var(--herbal-green);
+    border: 1px solid var(--herbal-green);
+    padding: 0.85em 1.6em;
+    border-radius: var(--radius);
+    text-decoration: none;
+  }
+  .button-outline:hover {
+    background: var(--herbal-green);
+    color: var(--rice-paper);
+  }
+
+  .source-note {
+    color: var(--text-muted);
+    font-size: var(--fs-small);
+  }
+
+  @media (max-width: 640px) {
+    .tables {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

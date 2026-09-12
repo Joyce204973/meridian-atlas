@@ -1,6 +1,12 @@
 ---
+import { existsSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import Base from "../layouts/Base.astro";
-import Prose from "../components/Prose.astro";
+
+// Drop the photo at public/images/joyce-portrait.jpg and it appears here
+// automatically — no code change needed.
+const portraitPath = fileURLToPath(new URL("../../public/images/joyce-portrait.jpg", import.meta.url));
+const hasPortrait = existsSync(portraitPath);
 ---
 
 <Base
@@ -8,49 +14,23 @@ import Prose from "../components/Prose.astro";
   description="Joyce Ma grew up between Western medicine and Traditional Chinese Medicine, studied biology at Minerva University across six cities and four continents, and is learning to read both maps of the body at once."
 >
   <article class="about">
-    <header class="about-header">
-      <p class="tag">My Story</p>
-      <h1>About Joyce</h1>
-    </header>
-
-    <Prose>
-      <p>
-        I grew up perched on the intersection of two medical worlds, and that intersection is
-        where my experience learning about Traditional Chinese Medicine (TCM) is unique.
-      </p>
-      <p>
-        In the busy, tech-driven startup culture of San Francisco, there was a little home
-        filled with simmering teas, pots of herbal soup, and natural remedies passed through the
-        hands of generations of farmers from rural China. I grew up experiencing the strengths
-        of two medical worldviews: modern Western medicine and TCM.
-      </p>
-      <p>
-        I study biology at Minerva University, where I have learned the rigor of the scientific
-        method and the Western map of the body — cells, pathogens, mechanisms, and the empirical
-        method. As my degree took me to six cities across four continents, I explored each one
-        through the lens of Chinese medicine.
-      </p>
-      <p>
-        In San Francisco, I shadowed an acupuncturist and learned the patterns of dis-ease, the
-        art of needling, and how fire cupping serves as both diagnosis and treatment. In Taipei,
-        I observed the workflow from consultation to pharmacists filling herbal prescriptions and
-        experienced their robust Western hospitals alongside nurturing acupuncture clinics. In
-        Shanghai, I attended lectures by TCM professors. In Seoul, I toured the TCM museum,
-        browsed the herb market, and received acupuncture weekly. In Buenos Aires, I felt time
-        slow down as friends gathered in the plazas after work to share a hot mate. There, I
-        witnessed an appreciation for life and rest I had never known, where happiness radiated
-        everywhere. In Tokyo, I stepped into a train station and fell into the rapid pace of the
-        locals, feeling the unnecessary urge to rush. I shadowed at a Japanese acupuncture clinic
-        and collaborated with the practitioners to design a health journal for patients — a tool
-        to help them find awareness and be empowered to live healthily in a workaholic society.
-      </p>
-      <p>
-        I may not be a practitioner yet, but I have learned about health by engaging with
-        cultures and lifestyles from North America, Latin America, three Asian countries, to
-        Europe. I am learning to read two maps of the body at once, and I want to take you along
-        and show you what I am seeing.
-      </p>
-    </Prose>
+    <div class="about-inner">
+      {hasPortrait && (
+        <img class="portrait" src="/images/joyce-portrait.jpg" alt="Joyce Ma" width="320" height="320" />
+      )}
+      <div class="about-text">
+        <p class="tag">My Story</p>
+        <h1>About Joyce</h1>
+        <p class="teaser">
+          I grew up on the intersection of two medical worlds — Western medicine and the herbal
+          remedies of my family's home in San Francisco. I study biology at Minerva University,
+          where my degree has taken me to six cities across four continents, exploring each one
+          through the lens of Chinese medicine. I'm not a practitioner yet, but I'm learning to
+          read two maps of the body at once, and this site is me showing you what I'm seeing.
+        </p>
+        <a class="button" href="/about/story">Read the Full Story</a>
+      </div>
+    </div>
 
     <div class="future-practice">
       <img src="/images/seal-mark.png" alt="" width="40" height="40" />
@@ -64,15 +44,34 @@ import Prose from "../components/Prose.astro";
 
 <style>
   .about {
-    max-width: var(--measure);
+    max-width: 56rem;
     margin: 0 auto;
     padding: var(--space-lg) var(--space-md);
   }
-  .about-header {
-    margin-block-end: var(--space-lg);
+  .about-inner {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: center;
+    flex-wrap: wrap;
   }
-  .about-header h1 {
-    margin: 0.4rem 0 0;
+  .portrait {
+    width: 14rem;
+    height: 14rem;
+    object-fit: cover;
+    border-radius: var(--radius);
+    flex-shrink: 0;
+  }
+  .about-text {
+    flex: 1;
+    min-width: 18rem;
+  }
+  .about-text h1 {
+    margin: 0.4rem 0 var(--space-sm);
+  }
+  .teaser {
+    color: var(--text);
+    max-width: 60ch;
+    margin-block-end: var(--space-md);
   }
   .future-practice {
     display: flex;
