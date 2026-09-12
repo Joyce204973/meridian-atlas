@@ -19,12 +19,33 @@ const SCALE = [
     <section class="intro" id="quiz-intro">
       <p class="tag">Self-Assessment</p>
       <h1>Find Your TCM Archetype</h1>
+      <p class="thesis">Self-awareness is self-mastery.</p>
       <p class="lede">
-        Five-Phase theory holds that one phase — Wood, Fire, Earth, Metal, or Water —
-        tends to organize how a person moves through the world. Answer the 30 statements
-        below honestly, as yourself right now rather than who you'd like to be, and see
-        which phase comes forward.
+        This assessment is adapted from Five-Phase theory as described in Beinfield &amp;
+        Korngold's <em>Between Heaven and Earth</em> (1991) — answer honestly, as yourself
+        right now rather than who you'd like to be, and it will surface what tends to drive
+        you, what you're drawn to in other people, what quietly wears you down, and where
+        your body tends to carry the strain.
       </p>
+
+      <svg class="river-divider" viewBox="0 0 600 40" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 20 C 100 5, 150 35, 250 20 S 400 5, 500 22 S 580 30, 600 18" />
+      </svg>
+
+      <p class="lede">
+        A river bends around whatever's in its way, runs high after rain and low in a dry
+        season, but it never stops being that river, on its way to the same sea. A
+        Five-Phase type works something like that: it isn't what happens to you, it's the
+        shape almost everything that happens to you tends to take.
+      </p>
+      <p class="lede">
+        Once you know which phase organizes you, a lot of things start to make sense in
+        hindsight — why certain risks feel worth taking and others don't, how you carry
+        yourself under pressure, what actually satisfies you versus what just keeps you
+        busy. It doesn't explain everything about your health, but it's often part of the
+        picture.
+      </p>
+
       <p class="meta">30 statements &middot; about 5 minutes</p>
       <p class="note">
         This is a tool for self-reflection, not a diagnosis or medical assessment.
@@ -98,11 +119,31 @@ const SCALE = [
   .intro h1 {
     margin: 0.4rem 0 var(--space-sm);
   }
+  .thesis {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--herbal-green);
+    margin-block-end: var(--space-md);
+  }
   .lede {
     font-weight: 300;
     font-size: var(--fs-lede);
     color: var(--text);
     max-width: 58ch;
+    margin-block-end: var(--space-md);
+  }
+  .river-divider {
+    display: block;
+    width: 100%;
+    max-width: 30rem;
+    height: 2rem;
+    margin-block: var(--space-md);
+  }
+  .river-divider path {
+    fill: none;
+    stroke: var(--soft-jade);
+    stroke-width: 1.5;
   }
   .intro .meta {
     margin-block-start: var(--space-sm);
