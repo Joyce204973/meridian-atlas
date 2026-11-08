@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
 import PostCard from "../components/PostCard.astro";
-import { SITE_TAGLINE, HERO_HEADLINE, HERO_SUBHEAD, SERIES } from "../consts";
+import { SITE_TAGLINE, HERO_HEADLINE, SERIES } from "../consts";
 import { withReadingTime } from "../lib/with-reading-time";
 
 const allPosts = await getCollection("posts", ({ data }) =>
@@ -13,27 +13,10 @@ const recentPosts = [...allPosts]
   .slice(0, 4);
 const recentWithTimes = await withReadingTime(recentPosts);
 const countBySeries = (slug: string) => allPosts.filter((p) => p.data.series === slug).length;
-
-const steps = [
-  {
-    n: "1",
-    title: "What the evidence says",
-    text: "The studies, who was in them, and where the results conflict.",
-  },
-  {
-    n: "2",
-    title: "What Chinese medicine asks",
-    text: "A different question about the same body, in its own terms.",
-  },
-  {
-    n: "3",
-    title: "What holding both teaches",
-    text: "Where the maps agree, where they disagree, and whether it is worth trying for you.",
-  },
-];
 ---
 
 <Base>
+  <!-- Top of the page only: deep green, like the first slide -->
   <section class="hero">
     <div class="hero-inner">
       <img
@@ -46,25 +29,53 @@ const steps = [
       <div class="hero-copy">
         <p class="eyebrow">The Meridian Atlas &middot; {SITE_TAGLINE}</p>
         <h1>{HERO_HEADLINE}</h1>
-        <p class="lede">{HERO_SUBHEAD}</p>
+        <p class="subject-lead">the scientific explanations behind</p>
+        <p class="subject">
+          <span class="subject-big">Wellness trends</span>
+          <span class="subject-and">and</span>
+          <span class="subject-big">everyday health problems</span>
+        </p>
         <div class="hero-actions">
-          <a class="button button--gold" href="/blog">Start reading</a>
+          <a class="button button--light" href="/blog">Start reading</a>
           <a class="button-outline" href="/about">About Joyce</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="how">
-    <p class="section-label">How every essay works</p>
-    <div class="steps">
-      {steps.map((s) => (
-        <div class="step">
-          <span class="num">{s.n}</span>
-          <h3>{s.title}</h3>
-          <p>{s.text}</p>
+  <!-- The intro paragraph, broken into three clusters -->
+  <section class="explainer">
+    <div class="explainer-inner">
+      <div class="flow">
+        <div class="box box-check">
+          <p class="small-label">checked against</p>
+          <p class="strong-line">peer-reviewed<br />evidence</p>
         </div>
-      ))}
+
+        <svg class="link link-fork" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 50 C50 50 50 22 100 22" />
+          <path d="M0 50 C50 50 50 78 100 78" />
+        </svg>
+
+        <div class="pair">
+          <p class="small-label pair-label">read through two medical systems</p>
+          <div class="box box-system"><p class="system">Biomedicine</p></div>
+          <div class="box box-system"><p class="system">Chinese medicine</p></div>
+        </div>
+
+        <svg class="link link-merge" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 22 C50 22 50 50 100 50" />
+          <path d="M0 78 C50 78 50 50 100 50" />
+        </svg>
+
+        <div class="box box-atlas">
+          <p class="atlas-name">The Meridian Atlas</p>
+          <p class="atlas-line">
+            holds the <strong>two maps</strong> of human health side by side, showing where they{" "}
+            <strong>agree</strong> and where they <strong>disagree</strong>.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -88,19 +99,21 @@ const steps = [
     </section>
   )}
 
-  <section class="series-grid-section">
-    <h2>Explore by series</h2>
-    <div class="series-grid">
-      {SERIES.map((s) => {
-        const n = countBySeries(s.slug);
-        return (
-          <a class="series-card" href={`/series/${s.slug}`} style={`--series: var(--c-${s.slug})`}>
-            <span class="count">{n > 0 ? `${n} ${n === 1 ? "essay" : "essays"}` : "Coming soon"}</span>
-            <h3>{s.name}</h3>
-            <p>{s.blurb}</p>
-          </a>
-        );
-      })}
+  <section class="series-band">
+    <div class="series-grid-section">
+      <h2>Explore by series</h2>
+      <div class="series-grid">
+        {SERIES.map((s) => {
+          const n = countBySeries(s.slug);
+          return (
+            <a class="series-card" href={`/series/${s.slug}`}>
+              <span class="count">{n > 0 ? `${n} ${n === 1 ? "essay" : "essays"}` : "Coming soon"}</span>
+              <h3>{s.name}</h3>
+              <p>{s.blurb}</p>
+            </a>
+          );
+        })}
+      </div>
     </div>
   </section>
 
@@ -113,26 +126,28 @@ const steps = [
         organizes how a person moves through the world. Answer 30 short statements to
         find yours.
       </p>
-      <a class="button button--gold" href="/archetype-quiz">Take the Quiz</a>
+      <a class="button" href="/archetype-quiz">Take the Quiz</a>
     </div>
   </section>
 
-  <section id="subscribe" class="subscribe-section">
-    <h2>Join the list</h2>
-    <p>New essays, roughly every other week. No noise, no wellness fluff.</p>
-    <form class="subscribe-form" action="#" method="post">
-      <label class="visually-hidden" for="email">Email address</label>
-      <input id="email" name="email" type="email" placeholder="you@example.com" required />
-      <button class="button" type="submit">Subscribe</button>
-    </form>
-    <p class="form-note">Subscription form goes live once a mailing list provider is connected.</p>
+  <section id="subscribe" class="subscribe-band">
+    <div class="subscribe-section">
+      <h2>Join the list</h2>
+      <p>New essays, roughly every other week. No noise, no wellness fluff.</p>
+      <form class="subscribe-form" action="#" method="post">
+        <label class="visually-hidden" for="email">Email address</label>
+        <input id="email" name="email" type="email" placeholder="you@example.com" required />
+        <button class="button" type="submit">Subscribe</button>
+      </form>
+      <p class="form-note">Subscription form goes live once a mailing list provider is connected.</p>
+    </div>
   </section>
 </Base>
 
 <style>
-  /* ---- Hero ---- */
+  /* ---------- Hero (the only green block, as on the first slide) ---------- */
   .hero {
-    background: var(--forest);
+    background: var(--herbal-green);
     color: var(--rice-paper);
   }
   .hero-inner {
@@ -146,30 +161,43 @@ const steps = [
   }
   .hero-mark {
     display: block;
-    width: 13.75rem;
-    height: 13.75rem;
+    width: 14rem;
+    height: 14rem;
     border-radius: 50%;
-    box-shadow: 0 0 0 6px rgba(227, 192, 143, 0.35);
   }
   .eyebrow {
     font-size: var(--fs-label);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: var(--ls-label);
-    color: var(--gold-light);
+    color: var(--earth-gold);
     margin: 0 0 var(--space-sm);
   }
   .hero h1 {
     color: var(--rice-paper);
     margin: 0 0 var(--space-sm);
   }
-  .lede {
-    font-weight: 300;
+  .subject-lead {
     font-size: var(--fs-lede);
+    font-weight: 300;
     color: var(--rice-paper);
-    opacity: 0.92;
-    max-width: 54ch;
+    opacity: 0.9;
+    margin: 0 0 0.25rem;
+  }
+  .subject {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--earth-gold);
     margin: 0 0 var(--space-md);
+    line-height: 1.25;
+  }
+  .subject-big {
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+  }
+  .subject-and {
+    font-size: 1.35rem;
+    margin-inline: 0.3em;
+    opacity: 0.9;
   }
   .hero-actions {
     display: flex;
@@ -183,72 +211,116 @@ const steps = [
     text-transform: uppercase;
     letter-spacing: var(--ls-label);
     color: var(--rice-paper);
-    border: 1px solid var(--gold-light);
+    border: 1px solid var(--rice-paper);
     padding: 0.85em 1.6em;
     border-radius: var(--radius);
     text-decoration: none;
   }
   .button-outline:hover {
     background: var(--rice-paper);
-    color: var(--forest);
+    color: var(--herbal-green);
   }
 
-  /* ---- How it works ---- */
-  .how {
+  /* ---------- Explainer: three clusters, left to right ---------- */
+  .explainer {
+    background: var(--jade-wash);
+    border-block-end: 1px solid var(--rule);
+  }
+  .explainer-inner {
     max-width: 72rem;
     margin: 0 auto;
-    padding: var(--space-lg) var(--space-md) var(--space-md);
+    padding: var(--space-lg) var(--space-md);
   }
-  .section-label {
+  .flow {
+    display: grid;
+    grid-template-columns: 1fr 3.5rem 1fr 3.5rem 1.35fr;
+    align-items: stretch;
+  }
+  .box {
+    background: var(--rice-paper);
+    border: 1px solid var(--soft-jade);
+    border-radius: var(--radius);
+    padding: var(--space-md);
+  }
+  .box-check {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-block-start: 3px solid var(--herbal-green);
+  }
+  .small-label {
     font-size: var(--fs-label);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: var(--ls-label);
-    color: var(--brown);
-    margin: 0 0 var(--space-sm);
-  }
-  .steps {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-sm);
-  }
-  .step {
-    background: var(--cream);
-    border: 1px solid var(--tan);
-    border-radius: var(--radius);
-    padding: var(--space-md);
-  }
-  .step:nth-child(1) { background: var(--mint); border-color: var(--soft-jade); }
-  .step:nth-child(2) { background: var(--sand); }
-  .step:nth-child(3) { background: var(--cream); }
-  .num {
-    display: inline-grid;
-    place-items: center;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    background: var(--herbal-green);
-    color: var(--rice-paper);
-    font-weight: 600;
-    font-size: var(--fs-small);
-    margin-block-end: var(--space-xs);
-  }
-  .step:nth-child(2) .num { background: var(--c-tcm-kitchen); }
-  .step:nth-child(3) .num { background: var(--c-womens-health); }
-  .step h3 {
-    font-size: 1.4rem;
+    color: var(--herbal-green);
     margin: 0 0 0.4rem;
   }
-  .step p {
+  .strong-line {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.9rem, 3vw, 2.5rem);
+    line-height: 1.1;
+    color: var(--text-strong);
     margin: 0;
-    font-size: var(--fs-small);
+  }
+  .link {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: var(--earth-gold);
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+  }
+  .link path {
+    vector-effect: non-scaling-stroke;
+  }
+  .pair {
+    display: grid;
+    grid-template-rows: auto 1fr 1fr;
+    gap: var(--space-xs);
+  }
+  .pair-label {
+    margin: 0;
+  }
+  .box-system {
+    display: flex;
+    align-items: center;
+    padding-block: var(--space-sm);
+  }
+  .system {
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--herbal-green);
+    margin: 0;
+  }
+  .box-atlas {
+    background: var(--herbal-green);
+    border-color: var(--herbal-green);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .atlas-name {
+    font-family: var(--font-display);
+    font-size: 1.9rem;
+    font-weight: 600;
+    color: var(--rice-paper);
+    margin: 0 0 0.4rem;
+  }
+  .atlas-line {
+    font-size: var(--fs-lede);
+    font-weight: 300;
+    color: var(--rice-paper);
+    margin: 0;
+  }
+  .atlas-line strong {
+    font-weight: 700;
+    color: var(--earth-gold);
   }
 
-  /* ---- Recent ---- */
-  .recent {
-    background: var(--sand);
-    margin-block-start: var(--space-lg);
-  }
+  /* ---------- Recent ---------- */
   .recent-inner {
     max-width: 72rem;
     margin: 0 auto;
@@ -261,7 +333,11 @@ const steps = [
     margin-block-start: var(--space-md);
   }
 
-  /* ---- Series ---- */
+  /* ---------- Series ---------- */
+  .series-band {
+    background: var(--jade-wash);
+    border-block: 1px solid var(--rule);
+  }
   .series-grid-section {
     max-width: 72rem;
     margin: 0 auto;
@@ -275,45 +351,37 @@ const steps = [
   }
   .series-card {
     display: block;
-    background: var(--series);
-    color: #fff;
+    background: var(--rice-paper);
+    border: 1px solid var(--soft-jade);
+    border-block-start: 3px solid var(--herbal-green);
     border-radius: var(--radius);
     padding: var(--space-md);
     text-decoration: none;
-    transition: transform 160ms ease, box-shadow 160ms ease;
+    transition: border-color 160ms ease, box-shadow 160ms ease;
   }
   .series-card:hover {
-    color: #fff;
-    transform: translateY(-3px);
-    box-shadow: 0 10px 24px rgba(30, 74, 62, 0.22);
+    border-color: var(--jade);
+    box-shadow: 0 6px 18px rgba(47, 93, 80, 0.12);
   }
   .count {
-    display: inline-block;
     font-size: var(--fs-tag);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: var(--ls-label);
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: var(--radius);
-    padding: 0.25em 0.7em;
+    color: var(--text-muted);
   }
   .series-card h3 {
     font-size: 1.55rem;
-    margin: 0.7rem 0 0.5rem;
-    color: #fff;
+    margin: 0.5rem 0;
+    color: var(--herbal-green);
   }
   .series-card p {
-    color: #fff;
+    color: var(--text);
     margin: 0;
     font-size: var(--fs-small);
-    opacity: 0.95;
   }
 
-  /* ---- Quiz ---- */
-  .quiz-callout {
-    background: var(--mint);
-    border-block: 1px solid var(--soft-jade);
-  }
+  /* ---------- Quiz ---------- */
   .quiz-inner {
     max-width: 40rem;
     margin: 0 auto;
@@ -337,7 +405,11 @@ const steps = [
     margin: 0 auto var(--space-md);
   }
 
-  /* ---- Subscribe ---- */
+  /* ---------- Subscribe ---------- */
+  .subscribe-band {
+    background: var(--jade-wash);
+    border-block-start: 1px solid var(--rule);
+  }
   .subscribe-section {
     max-width: 72rem;
     margin: 0 auto;
@@ -356,11 +428,11 @@ const steps = [
     flex: 1;
     min-width: 12rem;
     padding: 0.85em 1em;
-    border: 1px solid var(--tan);
+    border: 1px solid var(--soft-jade);
     border-radius: var(--radius);
     font-family: var(--font-body);
     font-size: var(--fs-body);
-    background: var(--cream);
+    background: var(--rice-paper);
     color: var(--text-strong);
   }
   .form-note {
@@ -375,23 +447,34 @@ const steps = [
     clip: rect(0 0 0 0);
   }
 
-  @media (max-width: 860px) {
+  @media (max-width: 900px) {
     .hero-inner {
       grid-template-columns: 1fr;
-      text-align: left;
       padding-block: var(--space-lg);
     }
     .hero-mark {
       width: 9rem;
       height: 9rem;
     }
-    .steps,
+    .flow {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .link {
+      height: 2.5rem;
+      width: 2px;
+      margin-inline: auto;
+      stroke: none;
+      background: var(--earth-gold);
+    }
+    .link path {
+      display: none;
+    }
     .recent-grid {
       grid-template-columns: 1fr;
     }
   }
   @media (prefers-reduced-motion: reduce) {
     .series-card { transition: none; }
-    .series-card:hover { transform: none; }
   }
 </style>

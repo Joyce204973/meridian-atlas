@@ -5,24 +5,11 @@
 
 :root {
   /* ---- Color ---- */
-  --forest: #1E4A3E;         /* deepest green: hero, footer, dark panels */
   --herbal-green: #2F5D50;   /* primary: nav, headings, buttons */
   --jade: #4A7C6B;           /* hover, links, secondary accents */
   --soft-jade: #7FAE9F;      /* borders, washes — never carries text */
-  --earth-gold: #C6A27E;     /* accent rules, borders */
-  --gold-light: #E3C08F;     /* gold text/buttons on dark green */
-  --brown: #735730;          /* small gold-family text on light backgrounds */
-  --mint: #DDEEE8;           /* pale jade panels */
-  --sand: #F1E4CC;           /* pale gold panels */
-  --tan: #E2CFAD;           /* deeper sand, borders on sand */
-  --cream: #FBF8F1;          /* cards */
-
-  /* series colors: each series owns one. White text passes AA on all five. */
-  --c-foundations: #2F7D6B;   /* Wood: jade */
-  --c-tcm-kitchen: #B5472F;   /* Fire: persimmon */
-  --c-uncover-why: #2B6C8F;   /* Water: deep blue */
-  --c-womens-health: #9B3F63; /* plum */
-  --c-life-hacks: #A8680F;    /* Earth: saffron */
+  --earth-gold: #C6A27E;     /* hairline accents only */
+  --jade-wash: #E3E7DD;      /* Soft Jade at 16% over Rice Paper: the only tint used */
   --rice-paper: #F5F1E8;     /* page background */
   --warm-white: #FAFAF6;     /* alternating sections */
   --charcoal: #2C2C2C;       /* headings, high-emphasis text */
@@ -31,7 +18,7 @@
 
   /* semantic aliases — prefer these in components */
   --bg: var(--rice-paper);
-  --bg-alt: var(--warm-white);
+  --bg-alt: var(--jade-wash);   /* alternating panels: soft jade wash, never white */
   --text: var(--body-gray);
   --text-strong: var(--charcoal);
   --text-muted: var(--light-gray);
@@ -109,7 +96,7 @@ nav a {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: var(--ls-label);
-  color: var(--brown);
+  color: var(--herbal-green);
 }
 
 .meta { color: var(--text-muted); font-size: var(--fs-small); }
@@ -141,13 +128,14 @@ nav a {
   background: var(--herbal-green);
   color: var(--rice-paper);
   padding: 0.85em 1.6em;
+  border: 0;
   border-radius: var(--radius);
   display: inline-block;
   text-decoration: none;
 }
 .button:hover { background: var(--jade); color: var(--rice-paper); }
-.button--gold { background: var(--gold-light); color: var(--charcoal); }
-.button--gold:hover { background: var(--rice-paper); color: var(--charcoal); }
+.button--light { background: var(--rice-paper); color: var(--herbal-green); }
+.button--light:hover { background: var(--jade-wash); color: var(--herbal-green); }
 
 @media (prefers-reduced-motion: no-preference) {
   a, .button { transition: color 120ms ease, background-color 120ms ease; }

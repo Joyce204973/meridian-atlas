@@ -18,7 +18,7 @@ const withTimes = await withReadingTime(sorted);
 ---
 
 <Base title={series.name} description={series.blurb}>
-  <div class="band" style={`--series: var(--c-${series.slug})`}>
+  <div class="band">
     <header>
       <p class="kicker">Series</p>
       <h1>{series.name}</h1>
@@ -47,8 +47,8 @@ const withTimes = await withReadingTime(sorted);
 
 <style>
   .band {
-    background: var(--series);
-    color: #fff;
+    background: var(--herbal-green);
+    color: var(--rice-paper);
     padding: var(--space-lg) var(--space-md);
   }
   .band header {
@@ -61,10 +61,10 @@ const withTimes = await withReadingTime(sorted);
     text-transform: uppercase;
     letter-spacing: var(--ls-label);
     margin: 0;
-    opacity: 0.85;
+    color: var(--earth-gold);
   }
   .band h1 {
-    color: #fff;
+    color: var(--rice-paper);
     margin: 0.3rem 0 0.6rem;
   }
   .blurb {
@@ -80,8 +80,8 @@ const withTimes = await withReadingTime(sorted);
   }
   .empty {
     color: var(--text-muted);
-    background: var(--cream);
-    border: 1px dashed var(--tan);
+    background: var(--jade-wash);
+    border: 1px dashed var(--soft-jade);
     padding: var(--space-md);
     border-radius: var(--radius);
   }

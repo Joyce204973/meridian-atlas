@@ -18,7 +18,7 @@ const formattedDate = pubDate.toLocaleDateString("en-US", {
 });
 ---
 
-<article class="card" style={`--series: var(--c-${series}, var(--herbal-green))`}>
+<article class="card">
   <SeriesTag series={series} />
   <h3><a href={href}>{title}</a></h3>
   <p class="description">{description}</p>
@@ -30,17 +30,16 @@ const formattedDate = pubDate.toLocaleDateString("en-US", {
 
 <style>
   .card {
-    background: var(--cream);
-    border: 1px solid var(--tan);
-    border-inline-start: 5px solid var(--series);
+    background: var(--jade-wash);
+    border: 1px solid var(--rule);
+    border-inline-start: 4px solid var(--herbal-green);
     border-radius: var(--radius);
     padding: var(--space-md);
     margin-block-end: var(--space-sm);
     transition: box-shadow 160ms ease, transform 160ms ease;
   }
   .card:hover {
-    box-shadow: 0 6px 20px rgba(30, 74, 62, 0.12);
-    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(47, 93, 80, 0.12);
   }
   .card h3 {
     font-size: var(--fs-post-title);
@@ -51,7 +50,7 @@ const formattedDate = pubDate.toLocaleDateString("en-US", {
     text-decoration: none;
   }
   .card h3 a:hover {
-    color: var(--series);
+    color: var(--jade);
   }
   .description {
     color: var(--text);
@@ -60,9 +59,9 @@ const formattedDate = pubDate.toLocaleDateString("en-US", {
   }
   .meta {
     margin: 0;
+    color: var(--body-gray);
   }
   @media (prefers-reduced-motion: reduce) {
     .card { transition: none; }
-    .card:hover { transform: none; }
   }
 </style>
