@@ -1,9 +1,11 @@
 ---
 import { SITE_TITLE, SITE_TAGLINE, SERIES } from "../consts";
+import ColorStrip from "./ColorStrip.astro";
 const year = new Date().getFullYear();
 ---
 
 <footer class="footer">
+  <ColorStrip />
   <div class="inner">
     <div class="brand">
       <img src="/images/globe-mark.png" alt="" width="44" height="44" class="mark" />
@@ -43,7 +45,7 @@ const year = new Date().getFullYear();
 
 <style>
   .footer {
-    background: var(--herbal-green);
+    background: var(--forest);
     color: var(--rice-paper);
     margin-block-start: var(--space-xl);
   }
@@ -70,7 +72,7 @@ const year = new Date().getFullYear();
   .brand .tagline {
     font-family: var(--font-display);
     font-style: italic;
-    color: var(--earth-gold);
+    color: var(--gold-light);
     margin: 0.25rem 0 0;
   }
   .label {
@@ -79,7 +81,7 @@ const year = new Date().getFullYear();
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: var(--ls-label);
-    color: var(--soft-jade);
+    color: var(--mint);
     margin: 0 0 var(--space-sm);
   }
   .series-nav ul {
@@ -94,7 +96,7 @@ const year = new Date().getFullYear();
     opacity: 0.9;
   }
   .series-nav a:hover {
-    color: var(--earth-gold);
+    color: var(--gold-light);
     opacity: 1;
   }
   .subscribe p {
@@ -103,7 +105,7 @@ const year = new Date().getFullYear();
     margin: 0 0 var(--space-sm);
   }
   .subscribe .button {
-    background: var(--earth-gold);
+    background: var(--gold-light);
     color: var(--charcoal);
   }
   .subscribe .button:hover {
@@ -122,7 +124,7 @@ const year = new Date().getFullYear();
     align-items: center;
     gap: 0.6rem;
     font-size: var(--fs-small);
-    color: var(--soft-jade);
+    color: var(--mint);
     margin-block-end: var(--space-sm);
   }
   .seal img {
@@ -130,13 +132,13 @@ const year = new Date().getFullYear();
   }
   .disclaimer {
     font-size: var(--fs-small);
-    color: var(--soft-jade);
+    color: var(--mint);
     max-width: 60ch;
     margin-block-end: var(--space-sm);
   }
   .copyright {
     font-size: var(--fs-small);
-    color: var(--soft-jade);
+    color: var(--mint);
     margin: 0;
   }
   @media (max-width: 720px) {

@@ -1,0 +1,38 @@
+---
+import { SERIES } from "../consts";
+
+interface Props {
+  series: string;
+  linked?: boolean;
+}
+const { series, linked = true } = Astro.props;
+const entry = SERIES.find((s) => s.slug === series);
+const name = entry?.name ?? series;
+const color = `--series: var(--c-${series}, var(--herbal-green))`;
+---
+
+{linked ? (
+  <a href={`/series/${series}`} class="chip" style={color}>{name}</a>
+) : (
+  <span class="chip" style={color}>{name}</span>
+)}
+
+<style>
+  .chip {
+    display: inline-block;
+    background: var(--series);
+    color: #fff;
+    font-size: var(--fs-tag);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: var(--ls-label);
+    padding: 0.3em 0.75em;
+    border-radius: var(--radius);
+    text-decoration: none;
+    line-height: 1.4;
+  }
+  a.chip:hover {
+    color: #fff;
+    filter: brightness(1.12);
+  }
+</style>

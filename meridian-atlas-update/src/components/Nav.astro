@@ -1,8 +1,10 @@
 ---
 import { SITE_TITLE, NAV_LINKS } from "../consts";
+import ColorStrip from "./ColorStrip.astro";
 ---
 
 <header class="nav-wrap">
+  <ColorStrip />
   <nav class="nav">
     <a href="/" class="lockup">
       <img src="/images/globe-mark.png" alt="" width="36" height="36" class="mark" />
@@ -63,8 +65,13 @@ import { SITE_TITLE, NAV_LINKS } from "../consts";
   .links a {
     color: var(--text-strong);
   }
+  .links a {
+    padding-block: 0.3rem;
+    border-block-end: 2px solid transparent;
+  }
   .links a:hover {
-    color: var(--accent-hover);
+    color: var(--herbal-green);
+    border-block-end-color: var(--gold-light);
   }
   .menu-toggle {
     display: none;

@@ -21,7 +21,7 @@ const formattedDate = pubDate.toLocaleDateString("en-US", {
 ---
 
 <Base title={title} description={description} articlePublishedTime={pubDate.toISOString()}>
-  <article class="post">
+  <article class="post" style={`--series: var(--c-${series}, var(--herbal-green))`}>
     <header class="post-header">
       <SeriesTag series={series} />
       <h1>{title}</h1>
@@ -57,6 +57,10 @@ const formattedDate = pubDate.toLocaleDateString("en-US", {
     margin-inline: auto;
     text-align: left;
     margin-block-end: var(--space-lg);
+    padding: var(--space-md);
+    background: color-mix(in srgb, var(--series) 12%, var(--rice-paper));
+    border-inline-start: 6px solid var(--series);
+    border-radius: var(--radius);
   }
   .post-header h1 {
     margin: 0.5rem 0;
@@ -82,12 +86,21 @@ const formattedDate = pubDate.toLocaleDateString("en-US", {
     max-width: var(--measure);
     margin: var(--space-xl) auto 0;
     padding-block-start: var(--space-md);
-    border-block-start: 1px solid var(--rule);
+    padding: var(--space-md);
+    background: var(--forest);
+    border-radius: var(--radius);
   }
   .cta p {
     font-family: var(--font-display);
     font-size: 1.25rem;
-    color: var(--text-strong);
+    color: var(--rice-paper);
     margin-block-end: var(--space-sm);
+  }
+  .cta .button {
+    background: var(--gold-light);
+    color: var(--charcoal);
+  }
+  .cta .button:hover {
+    background: var(--rice-paper);
   }
 </style>

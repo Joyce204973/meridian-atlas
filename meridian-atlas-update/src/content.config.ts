@@ -4,13 +4,10 @@ import { glob } from "astro/loaders";
 
 const SERIES = [
   "foundations",
-  "kitchen-culture",
-  "biohacking",
-  "two-maps",
+  "tcm-kitchen",
+  "uncover-why",
   "womens-health",
-  "seasons",
-  "field-notes",
-  "glossary",
+  "life-hacks",
 ] as const;
 
 const posts = defineCollection({
