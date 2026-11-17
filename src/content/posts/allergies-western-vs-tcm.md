@@ -4,7 +4,7 @@ series: "uncover-why"
 description: "Western medicine hands you an antihistamine; TCM looks for a weak border. How each map explains allergies, how each treats them, and what trials show."
 pubDate: 2026-11-17
 pullQuote: "Modern medicine zooms in to the mast cell, TCM zooms out to the whole person and season."
-draft: true
+draft: false
 related: []
 ---
 

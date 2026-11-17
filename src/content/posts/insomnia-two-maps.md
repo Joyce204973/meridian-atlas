@@ -4,7 +4,7 @@ series: "uncover-why"
 description: "Heavy body, awake mind. TCM reads insomnia as a failed handover from Yang to Yin; biomedicine reads it as a nervous system stuck on."
 pubDate: 2026-11-17
 pullQuote: "Sleep, in this view, is a handover from Yang to Yin."
-draft: true
+draft: false
 related: []
 ---
 
