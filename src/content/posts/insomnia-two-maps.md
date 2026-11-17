@@ -59,3 +59,27 @@ The clinical studies on whether acupuncture is effective for treating insomnia a
 Both maps treat insomnia as the symptom of many deeply rooted problems, and both connect sleep to emotion. Both systems recommend less caffeine, less alcohol, no heavy late meals.
 
 Each map treats the problem based on how they map the problem. The Western map splits the night into an overactive wake system and a learned loop of worry, so it targets both: drugs quiet the wake system, and CBT-I unwinds the loop, which is why guidelines put CBT-I first (Sutton, 2021). The TCM map reads the whole house, so it treats the pattern, with needles and often herbs, food, and lifestyle changes alongside them.
+
+## References
+
+<div class="bibliography">
+
+Beinfield, H., & Korngold, E. (1991). *Between heaven and earth: A guide to Chinese medicine*. Ballantine Books.
+
+Chen, J. (Ed.). (2011). *Diagnostics in Chinese medicine*. People’s Medical Publishing House.
+
+Cheuk, D. K. L., Yeung, W. F., Chung, K. F., & Wong, V. (2012). Acupuncture for insomnia. *Cochrane Database of Systematic Reviews*, (9), Article CD005472.[ https://doi.org/10.1002/14651858.CD005472.pub3](https://doi.org/10.1002/14651858.CD005472.pub3)
+
+Deadman, P., Al-Khafaji, M., & Baker, K. (2001). *A manual of acupuncture*. Journal of Chinese Medicine Publications.
+
+Dressle, R. J., & Riemann, D. (2023). Hyperarousal in insomnia disorder: Current evidence and potential mechanisms. *Journal of Sleep Research, 32*(6), Article e13928.[ https://doi.org/10.1111/jsr.13928](https://doi.org/10.1111/jsr.13928)
+
+Harvey, A. G. (2002). A cognitive model of insomnia. *Behaviour Research and Therapy, 40*(8), 869–893.[ https://doi.org/10.1016/S0005-7967(01)00061-4](https://doi.org/10.1016/S0005-7967\(01\)00061-4)
+
+Ma, J., Peng, M., & Xu, X.-J. (2025). Clinical efficacy and safety of acupuncture versus Western medicine for insomnia: A systematic review and meta-analysis. *Frontiers in Neurology, 16*, Article 1589535.[ https://doi.org/10.3389/fneur.2025.1589535](https://doi.org/10.3389/fneur.2025.1589535)
+
+Sutton, E. L. (2021). Insomnia. *Annals of Internal Medicine: In the Clinic*.[ https://doi.org/10.7326/AITC202103160](https://doi.org/10.7326/AITC202103160)
+
+Yin, X., Li, W., Liang, T., Lu, B., Yue, H., Li, S., Zhong, V. W., Zhang, W., Li, X., Zhou, S., Mi, Y., Wu, H., & Xu, S. (2022). Effect of electroacupuncture on insomnia in patients with depression: A randomized clinical trial. *JAMA Network Open, 5*(7), Article e2220563.[ https://doi.org/10.1001/jamanetworkopen.2022.20563](https://doi.org/10.1001/jamanetworkopen.2022.20563)
+
+</div>

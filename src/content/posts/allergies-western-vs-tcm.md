@@ -48,7 +48,7 @@ The explanation lies at multiple levels: genes set the starting odds, the barrie
 
 ## Treatment in modern medicine
 
-Because modern medicine maps allergy to specific steps, each drug targets a specific step. Antihistamines, such as over-the-counter Zyrtec, work at the last link of the chain. Histamine has to dock onto the H1 receptor to cause itching and swelling, and most antihistamines are inverse agonists, meaning they bind to that receptor and pushes it below its baseline activity (Church & Church, 2011). Corticosteroids, such as in the form of nasal sprays, work upstream of that, decreasing the broader inflammation that mast-cell mediators set off. They bind the glucocorticoid receptor, which then switches off inflammatory switches like NF-κB inside the cell (Reichardt et al., 2021). Epinephrine is the emergency drug for anaphylaxis, the whole-body reaction in which blood pressure drops and airways close, because it reverses the effects. (Kemp et al., 2008). Anti-IgE antibody therapy goes further back and removes the IgE that arms the mast cells in the first place. The drug omalizumab cuts free IgE by more than 96% (Yu et al., 2021).
+Because modern medicine maps allergy to specific steps, each drug targets a specific step. Antihistamines, such as over-the-counter Zyrtec, work at the last link of the chain. Histamine has to dock onto the H1 receptor to cause itching and swelling, and most antihistamines are inverse agonists, meaning they bind to that receptor and pushes it below its baseline activity (Church & Church, 2011). Corticosteroids, such as in the form of nasal sprays, work upstream of that, decreasing the broader inflammation that mast-cell mediators set off. They bind the glucocorticoid receptor, which then switches off inflammatory switches like NF-κB inside the cell (Reichardt et al., 2021). Epinephrine is the emergency drug for anaphylaxis, the whole-body reaction in which blood pressure drops and airways close, because it reverses the effects. (Kemp et al., 2008). Anti-IgE antibody therapy goes further back and removes the IgE that arms the mast cells in the first place.
 
 All of these manage the reaction of the immune system. The one treatment that tries to teach the immune system is allergen immunotherapy, which gives you the allergen itself in small, increasing doses, as shots or under-the-tongue tablets. Over time IgE levels gradually fall and IgG4, a different antibody that can mop up allergen without triggering mast cells, rises. The T cell balance shifts away from Th2, and regulatory cells (Tregs and Tr1 cells, the immune system's brakes) become more active (Akdis & Akdis, 2015). It is slow, usually years of treatment, and the benefit tends to last only if treatment is continued long enough. For peanut immunotherapy, reactions and relapse after stopping are documented problems (Carnazza et al., 2025).
 
@@ -72,7 +72,7 @@ The similarities are real. Both maps place the trouble at the body's boundary: t
 
 The differences are just as real, and they set the treatment. Modern medicine asks which step failed and gives a drug for that step, so the same antihistamine suits every patient with the same reaction, and the question "did it work" can be answered with a placebo comparison. TCM asks which pattern the patient is in, so two people with the same sneeze can get different points or herbs, and the person, not the symptom, is what gets treated. The first approach is easy to empirically prove that a drug works as treatment, it's easy to diagnose a patient with specific illness and assign a drug. The TCM approach tailors to the person as a whole in the context of their life and is hard to prove, which is why the trials above struggle to separate real needling from sham. Neither difference makes one map the right one. They answer different questions, one about mechanism and one about the whole patient over time.
 
-Modern medicine zooms in to the mast cell, TCM zooms out to the whole person and season. Both look at the same body with two maps at two magnifying levels. Both maps put allergy at the body's boundary. The epithelial barrier hypothesis and the Lung-governs-skin-and-nose idea describe a defended surface from two directions. This is my analogy, not a proven link, and the post should say so.
+Modern medicine zooms in to the mast cell, TCM zooms out to the whole person and season. Both look at the same body with two maps at two magnifying levels. Both maps put allergy at the body's boundary. The epithelial barrier hypothesis and the Lung-governs-skin-and-nose idea describe a defended surface from two directions.
 
 **Each map has a blind spot the other covers.** The molecular map explains the mechanism but gives little guidance about why this person, this spring. The TCM map speaks to the person but cannot show the mechanism and offers weaker evidence. A reader who holds both asks better questions of either.
 
@@ -86,17 +86,25 @@ Ahmadizar, F., et al. (2018). Early-life antibiotic exposure increases the risk 
 
 Akdis, C. A. (2021). Does the epithelial barrier hypothesis explain the increase in allergy, autoimmunity and other chronic conditions? *Nature Reviews Immunology*. https://doi.org/10.1038/s41577-021-00538-7 (read via press coverage only; check the paper)
 
+Akdis, C. A., & Akdis, M. (2015). Mechanisms of allergen-specific immunotherapy and immune tolerance to allergens. *World Allergy Organization Journal*.[ https://doi.org/10.1186/s40413-015-0063-2](https://doi.org/10.1186/s40413-015-0063-2)
+
 American College of Allergy, Asthma & Immunology. (2024). *Allergy facts and stats*. https://acaai.org/allergies/allergies-101/facts-stats/
 
 Beinfield, H., & Korngold, E. (1991). *Between Heaven and Earth: A guide to Chinese medicine*. Ballantine Books.
 
 Brinkhaus, B., et al. (2013). Acupuncture in patients with seasonal allergic rhinitis: A randomized trial. *Annals of Internal Medicine, 158*(4), 225–234.
 
+Carnazza, M., Werner, R., Tiwari, R. K., Geliebter, J., Li, X.-M., & Yang, N. (2025). The etiology of IgE-mediated food allergy: Potential therapeutics and challenges. *International Journal of Molecular Sciences, 26*(4), Article 1563.[ https://doi.org/10.3390/ijms26041563](https://doi.org/10.3390/ijms26041563)
+
+Church, D. S., & Church, M. K. (2011). Pharmacology of antihistamines. *World Allergy Organization Journal*.[ https://doi.org/10.1097/WOX.0b013e3181f385d9](https://doi.org/10.1097/WOX.0b013e3181f385d9)
+
 Deadman, P., Al-Khafaji, M., & Baker, K. (2007). *A manual of acupuncture*. Journal of Chinese Medicine Publications. (confirm edition)
 
 Ege, M. J., et al. (2011). Exposure to environmental microorganisms and childhood asthma. *New England Journal of Medicine, 364*, 701–709. (read via news summary only; check the paper)
 
-He, M., Qin, W., Qin, Z., & Zhao, C. (2022). Acupuncture for allergic rhinitis: A systematic review and meta-analysis. *European Journal of Medical Research, 27*, 58. https://doi.org/10.1186/s40001-022-00682-3
+He, M., Qin, W., Qin, Z., & Zhao, C. (2022). Acupuncture for allergic rhinitis: A systematic review and meta-analysis. *European Journal of Medical Research, 27*, 58. <https://doi.org/10.1186/s40001-022-00682-3>
+
+Kemp, S. F., Lockey, R. F., Simons, F. E. R., & World Allergy Organization ad hoc Committee on Epinephrine in Anaphylaxis. (2008). Epinephrine: The drug of choice for anaphylaxis. A statement of the World Allergy Organization. *Allergy*.[ https://doi.org/10.1111/j.1398-9995.2008.01733.x](https://doi.org/10.1111/j.1398-9995.2008.01733.x)
 
 LEAP Study. (n.d.). *LEAP: Learning Early About Peanut Allergy*. https://www.leapstudy.co.uk/leap-0 (read via the study website only; cite the NEJM paper once checked)
 
