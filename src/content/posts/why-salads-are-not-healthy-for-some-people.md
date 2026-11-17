@@ -6,6 +6,7 @@ pubDate: 2026-09-09
 pullQuote: "The question is never “is this healthy?” It’s “healthy for whom, prepared how, eaten when?”"
 draft: false
 related: []
+updatedDate: 2026-11-17
 ---
 
 My biohacker role model on social media swears by her signature brunch appetizer: a raw carrot salad drizzled with olive oil and lemon juice. Carrots are packed with beta-carotene. Great for glowing skin. Clean, whole, unprocessed. I was inspired.
@@ -17,8 +18,6 @@ So I made the same carrot salad as my vegetable dish and brought it to my intern
 I didn't understand. It was a salad. Vegetables. Fiber. How could a carrot salad possibly be wrong?
 
 ## The Case for Salads
-
-Let me be fair to the salad. It deserves it.
 
 Raw vegetables give you fiber and micronutrients while keeping you feeling light. Fiber is a prebiotic — gut bacteria ferment it into short-chain fatty acids (SCFAs) like butyrate, propionate, and acetate, which maintain the gut lining, lower inflammation, and protect against chronic disease (Tan et al., 2014; Blaak et al., 2020). Raw produce also carries soil microbes that can increase gut biodiversity and strengthen innate immunity (Lang et al., 2023). Epidemiologically, higher fruit and vegetable intake is consistently associated with reduced risk of colorectal cancer, cardiovascular disease, obesity, and type 2 diabetes.
 
@@ -60,7 +59,7 @@ When you eat raw food, that cooking pot has to do double duty: warm the food up 
 
 A diet heavy in raw fruits and vegetables cools the body — "not because these foods have been refrigerated, but because they promote the loss of body heat and the secretion of fluid. For a person who is Cold, Damp, and depleted, this diet exaggerates internal climate, aggravating symptoms of chilliness, puffiness, phlegm, fullness, and fatigue" (Beinfield & Korngold, 1991, p. 324).
 
-But"the same salads and juicy fruits that undermine an already cool, moist person are therapeutic for someone who is hot and dry" (p. 324). It is not one-size-fits-all. A person running hot — red face, irritability, constipation, feels warm all the time — might genuinely benefit from a raw salad for lunch. A person who runs cold — bloating, fatigue, cold hands, loose stools — might be making themselves worse with every virtuous bowl of greens.
+But "the same salads and juicy fruits that undermine an already cool, moist person are therapeutic for someone who is hot and dry" (p. 324). It is not one-size-fits-all. A person running hot — red face, irritability, constipation, feels warm all the time — might genuinely benefit from a raw salad for lunch. A person who runs cold — bloating, fatigue, cold hands, loose stools — might be making themselves worse with every virtuous bowl of greens.
 
 My mom figured this out through years of reading. Once she learned that raw fruits and vegetables and cold, sticky dairy products worsen Damp, Cold Spleens, she started teaching me. My favorite yogurts, cheese, cottage cheese, cream cheese, cow's milk, peaches, bananas — all subject to a sharp *tsk*. Dairy products, like fruit, are dampening on the body.
 
@@ -91,7 +90,6 @@ If salads consistently leave you feeling worse than before you ate, that's not a
 You're still eating the vegetables. You're just letting the stove do some of the work your Spleen was struggling to do alone.
 
 ## Bibliography
-
 
 <div class="bibliography">
 

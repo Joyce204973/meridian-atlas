@@ -1,6 +1,6 @@
 export const SITE_TITLE = "The Meridian Atlas";
 export const SITE_TAGLINE = "A Different Map of the Body";
-export const HERO_HEADLINE = "Know why before you try.";
+export const HERO_HEADLINE = "Your Traditional Chinese Medicine blog.";
 export const HERO_SUBHEAD =
   "Wellness trends and everyday health problems, checked against peer-reviewed evidence and read through two medical systems: biomedicine and Chinese medicine. The Meridian Atlas holds the two maps of human health side by side, showing where they agree and where they disagree.";
 export const SITE_DESCRIPTION =

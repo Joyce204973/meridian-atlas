@@ -1,12 +1,26 @@
 ---
-import { existsSync } from "node:fs";
-import { fileURLToPath } from "node:url";
 import Base from "../layouts/Base.astro";
+import Prose from "../components/Prose.astro";
 
-// Drop the photo at public/images/joyce-portrait.jpg and it appears here
-// automatically — no code change needed.
-const portraitPath = fileURLToPath(new URL("../../public/images/joyce-portrait.jpg", import.meta.url));
-const hasPortrait = existsSync(portraitPath);
+// Portrait: replace public/images/joyce-portrait.jpg to change the photo (keep the same file name).
+
+// Instagram carousel. Images live in public/images/about-carousel/ (01.webp, 02.webp, ...).
+// To add, remove or reorder a slide, edit this list — nothing else needs to change.
+const slides = [
+  { file: "01.webp", alt: "Joyce smiling by a river at sunset, wearing a flower crown. Text on the image: I'm Joyce, biology student, future acupuncturist, born and raised in SF, studying in 6 countries, love traditional Chinese medicine." },
+  { file: "02.webp", alt: "Joyce pouring tea at a tea table. Text on the image: I'm Joyce, I'm a Chinese American from San Francisco and aspiring acupuncturist." },
+  { file: "03.webp", alt: "A bowl of congee beside jars of dried herbs. Text on the image: in the busy, tech-driven startup culture of San Francisco, there was a little home filled with simmering teas, pots of herbal soup and natural remedies passed down through generations of farmers from rural China." },
+  { file: "04.webp", alt: "A doctor examining a patient's eyes with an optical instrument. Text on the image: having grown up in San Francisco, I value and appreciate the strengths of modern medicine, but I learned from my Chinese heritage powerful wisdom for health and lifestyle." },
+  { file: "05.webp", alt: "Joyce on a busy street in Shanghai with the Bund clock tower lit up behind her. Text on the image: I studied my biology degree in 6 cities across four continents and explored each one through the lens of Chinese Medicine. I learned the scientific method, and I can tell you acupuncture is more than the placebo effect." },
+  { file: "06.webp", alt: "A treatment bed with curtains in a Shanghai clinic. Text on the image: Shanghai, China. I studied Traditional Chinese Medicine fundamentals and qigong at the Shanghai University of Traditional Chinese Medicine, and toured public hospitals and private clinics where Western and Chinese medicine met." },
+  { file: "07.webp", alt: "A cart holding glass cupping jars. Text on the image: San Francisco. I shadowed in occupational therapy and interned in several acupuncture clinics, and learned the patterns of dis-ease, the art of needling, and how fire cupping serves as both diagnosis and treatment." },
+  { file: "08.webp", alt: "A pharmacist reaching for a drawer in a wall of herbal medicine drawers. Text on the image: Taipei, Taiwan. I shadowed the workflow from consultation to filling herbal prescriptions by hand, experienced robust Western hospitals and acupuncture clinics, and studied Traditional Chinese Medicine at National Taiwan University." },
+  { file: "09.webp", alt: "A crowded herb market stall in Seoul with red banners. Text on the image: Seoul, South Korea. I toured the TCM museum, shopped at the herb market, and received acupuncture weekly." },
+  { file: "10.webp", alt: "A hand holding a gourd of mate in a park at sunset. Text on the image: Buenos Aires, Argentina. I felt time slow down as friends gathered in the plazas after work to share a hot mate. I witnessed an appreciation for life and rest I had never known, where happiness radiated everywhere." },
+  { file: "11.webp", alt: "Colleagues gathered around a table in a Tokyo clinic meeting room. Text on the image: Tokyo, Japan. I stepped into a train station and fell into the rapid pace of the locals, and shadowed at a Japanese acupuncture clinic where I collaborated with practitioners to design a health journal for patients." },
+  { file: "12.webp", alt: "The Berlin TV tower rising above Alexanderplatz station. Text on the image: Berlin, Germany. Receiving acupuncture and massage treatments as a patient let me observe how different forms of traditional medicine have travelled over and evolved." },
+  { file: "13.webp", alt: "Joyce standing in front of a wall of herbal medicine drawers. Text on the image: my goal, as a Chinese American familiar with both maps of Western and Chinese medicine, is to share with everyone the wisdom that Traditional Chinese Medicine holds by using a language you understand." },
+];
 ---
 
 <Base
@@ -14,23 +28,93 @@ const hasPortrait = existsSync(portraitPath);
   description="Joyce Ma grew up between Western medicine and Traditional Chinese Medicine, studied biology at Minerva University across six cities and four continents, and is learning to read both maps of the body at once."
 >
   <article class="about">
-    <div class="about-inner">
-      {hasPortrait && (
-        <img class="portrait" src="/images/joyce-portrait.jpg" alt="Joyce Ma" width="320" height="320" />
-      )}
-      <div class="about-text">
+    <div class="about-grid">
+      <figure class="portrait-col">
+        <img class="portrait" src="/images/joyce-portrait.jpg" alt="Joyce Ma" width="480" height="640" />
+      </figure>
+
+      <div class="story-col">
         <p class="tag">My Story</p>
         <h1>About Joyce</h1>
-        <p class="teaser">
-          I grew up on the intersection of two medical worlds — Western medicine and the herbal
-          remedies of my family's home in San Francisco. I study biology at Minerva University,
-          where my degree has taken me to six cities across four continents, exploring each one
-          through the lens of Chinese medicine. I'm not a practitioner yet, but I'm learning to
-          read two maps of the body at once, and this site is me showing you what I'm seeing.
-        </p>
-        <a class="button" href="/about/story">Read the Full Story</a>
+
+        <Prose>
+          <p>
+            I grew up perched on the intersection of two medical worlds, and that intersection is
+            where my experience learning about Traditional Chinese Medicine (TCM) is unique.
+          </p>
+          <p>
+            In the busy, tech-driven startup culture of San Francisco, there was a little home
+            filled with simmering teas, pots of herbal soup, and natural remedies passed through the
+            hands of generations of farmers from rural China. I grew up experiencing the strengths
+            of two medical worldviews: modern Western medicine and TCM.
+          </p>
+          <p>
+            I study biology at Minerva University, where I have learned the rigor of the scientific
+            method and the Western map of the body — cells, pathogens, mechanisms, and the empirical
+            method. As my degree took me to six cities across four continents, I explored each one
+            through the lens of Chinese medicine.
+          </p>
+          <p>
+            In San Francisco, I shadowed an acupuncturist and learned the patterns of dis-ease, the
+            art of needling, and how fire cupping serves as both diagnosis and treatment. In Taipei,
+            I observed the workflow from consultation to pharmacists filling herbal prescriptions and
+            experienced their robust Western hospitals alongside nurturing acupuncture clinics. In
+            Shanghai, I attended lectures by TCM professors. In Seoul, I toured the TCM museum,
+            browsed the herb market, and received acupuncture weekly. In Buenos Aires, I felt time
+            slow down as friends gathered in the plazas after work to share a hot mate. There, I
+            witnessed an appreciation for life and rest I had never known, where happiness radiated
+            everywhere. In Tokyo, I stepped into a train station and fell into the rapid pace of the
+            locals, feeling the unnecessary urge to rush. I shadowed at a Japanese acupuncture clinic
+            and collaborated with the practitioners to design a health journal for patients — a tool
+            to help them find awareness and be empowered to live healthily in a workaholic society.
+          </p>
+          <p>
+            I may not be a practitioner yet, but I have learned about health by engaging with
+            cultures and lifestyles from North America, Latin America, three Asian countries, to
+            Europe. I am learning to read two maps of the body at once, and I want to take you along
+            and show you what I am seeing.
+          </p>
+        </Prose>
       </div>
     </div>
+
+    <section class="carousel" aria-roledescription="carousel" aria-label="Joyce's journey, city by city">
+      <div class="carousel-head">
+        <p class="tag">The Journey</p>
+        <h2>Six cities, one question</h2>
+      </div>
+
+      <div class="carousel-frame">
+        <button class="nav prev" type="button" aria-label="Previous slide">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        </button>
+
+        <ul class="track" tabindex="0" aria-label="Slides. Use the arrow keys to move between them.">
+          {slides.map((s, i) => (
+            <li class="slide" aria-roledescription="slide" aria-label={`${i + 1} of ${slides.length}`}>
+              <img
+                src={`/images/about-carousel/${s.file}`}
+                alt={s.alt}
+                width="900"
+                height="1125"
+                loading={i < 2 ? "eager" : "lazy"}
+                decoding="async"
+              />
+            </li>
+          ))}
+        </ul>
+
+        <button class="nav next" type="button" aria-label="Next slide">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        </button>
+      </div>
+
+      <div class="dots" role="tablist" aria-label="Choose a slide">
+        {slides.map((_, i) => (
+          <button class="dot" type="button" role="tab" aria-label={`Go to slide ${i + 1}`} aria-selected={i === 0 ? "true" : "false"} data-index={i}></button>
+        ))}
+      </div>
+    </section>
 
     <div class="future-practice">
       <img src="/images/seal-mark.png" alt="" width="40" height="40" />
@@ -42,38 +126,175 @@ const hasPortrait = existsSync(portraitPath);
   </article>
 </Base>
 
+<script>
+  const root = document.querySelector<HTMLElement>(".carousel");
+  if (root) {
+    const track = root.querySelector<HTMLElement>(".track")!;
+    const slides = Array.from(track.querySelectorAll<HTMLElement>(".slide"));
+    const dots = Array.from(root.querySelectorAll<HTMLButtonElement>(".dot"));
+    const prev = root.querySelector<HTMLButtonElement>(".prev")!;
+    const next = root.querySelector<HTMLButtonElement>(".next")!;
+
+    // Which slide is closest to the left edge of the track right now.
+    const current = () => {
+      const left = track.scrollLeft;
+      let best = 0;
+      let bestDist = Infinity;
+      slides.forEach((s, i) => {
+        const d = Math.abs(s.offsetLeft - track.offsetLeft - left);
+        if (d < bestDist) { best = i; bestDist = d; }
+      });
+      return best;
+    };
+
+    const goTo = (i: number) => {
+      const target = slides[Math.max(0, Math.min(slides.length - 1, i))];
+      track.scrollTo({ left: target.offsetLeft - track.offsetLeft, behavior: "smooth" });
+    };
+
+    const sync = () => {
+      const i = current();
+      dots.forEach((d, n) => d.setAttribute("aria-selected", String(n === i)));
+      prev.disabled = i === 0;
+      const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+      next.disabled = atEnd;
+    };
+
+    prev.addEventListener("click", () => goTo(current() - 1));
+    next.addEventListener("click", () => goTo(current() + 1));
+    dots.forEach((d) => d.addEventListener("click", () => goTo(Number(d.dataset.index))));
+    track.addEventListener("scroll", () => requestAnimationFrame(sync), { passive: true });
+    track.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") { e.preventDefault(); goTo(current() + 1); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); goTo(current() - 1); }
+    });
+    window.addEventListener("resize", sync);
+    sync();
+  }
+</script>
+
 <style>
   .about {
-    max-width: 56rem;
+    max-width: 68rem;
     margin: 0 auto;
     padding: var(--space-lg) var(--space-md);
   }
-  .about-inner {
-    display: flex;
+
+  /* Photo on the left, full story on the right. */
+  .about-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 22rem) minmax(0, 1fr);
     gap: var(--space-lg);
-    align-items: center;
-    flex-wrap: wrap;
+    align-items: start;
+  }
+  .portrait-col {
+    margin: 0;
+    position: sticky;
+    top: var(--space-md);
   }
   .portrait {
-    width: 14rem;
-    height: 14rem;
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 4;
     object-fit: cover;
     object-position: center 20%;
     border-radius: var(--radius);
-    flex-shrink: 0;
   }
-  .about-text {
-    flex: 1;
-    min-width: 18rem;
+  .story-col h1 {
+    margin: 0.4rem 0 var(--space-md);
   }
-  .about-text h1 {
-    margin: 0.4rem 0 var(--space-sm);
+  .story-col :global(.prose) {
+    max-width: none;
   }
-  .teaser {
-    color: var(--text);
-    max-width: 60ch;
-    margin-block-end: var(--space-md);
+
+  /* Carousel */
+  .carousel {
+    margin-block-start: var(--space-xl);
   }
+  .carousel-head h2 {
+    margin: 0.4rem 0 var(--space-md);
+  }
+  .carousel-frame {
+    position: relative;
+  }
+  .track {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: var(--space-sm);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .track::-webkit-scrollbar {
+    display: none;
+  }
+  .slide {
+    flex: 0 0 min(20rem, 78%);
+    scroll-snap-align: start;
+  }
+  .slide img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--radius);
+    box-shadow: 0 2px 12px rgba(47, 93, 80, 0.14);
+  }
+  .nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 2.75rem;
+    height: 2.75rem;
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: var(--rice-paper);
+    color: var(--herbal-green);
+    box-shadow: 0 2px 10px rgba(47, 93, 80, 0.25);
+    cursor: pointer;
+  }
+  .nav:hover:not(:disabled) {
+    background: var(--herbal-green);
+    color: var(--rice-paper);
+  }
+  .nav:disabled {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .prev { left: 0.5rem; }
+  .next { right: 0.5rem; }
+
+  .dots {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-block-start: var(--space-sm);
+  }
+  .dot {
+    width: 0.6rem;
+    height: 0.6rem;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: var(--soft-jade);
+    opacity: 0.55;
+    cursor: pointer;
+  }
+  .dot[aria-selected="true"] {
+    background: var(--herbal-green);
+    opacity: 1;
+  }
+
   .future-practice {
     display: flex;
     align-items: center;
@@ -91,5 +312,20 @@ const hasPortrait = existsSync(portraitPath);
     margin: 0;
     color: var(--text);
     font-size: var(--fs-small);
+  }
+
+  /* Phones and small tablets: stack, photo on top. */
+  @media (max-width: 52rem) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+    .portrait-col {
+      position: static;
+      max-width: 20rem;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .track { scroll-behavior: auto; }
   }
 </style>
